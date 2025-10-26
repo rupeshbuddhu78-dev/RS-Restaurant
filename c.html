@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Contact Form</title>
+  <style>
+     nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: transparent;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      overflow-x: hidden;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: rgb(30, 214, 162);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 8px 14px;
+      border-radius: 5px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #179fde;
+      color: #fff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #179fde;
+    }
+  
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("https://images.unsplash.com/photo-1552083375-1447ce886485?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww");
+      background-size: cover;
+      background-position: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      flex-wrap: wrap; }
+
+    
+
+    .box1 {
+      width: 400px;
+      height: 500px;
+      background-image: url("");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .box1 h3 {
+      text-align: center;
+      font-size: 28px;
+      text-decoration: underline;
+      text-decoration-color: green;
+      margin-bottom: 15px;
+      color: #000;
+    }
+
+    .box1 input, .box1 textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    .box1 textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .box1 button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: #79cfe0;
+      color: #000;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .box1 button:hover {
+      background: #10b06d;
+      color: #fff;
+    }
+
+    @media (max-width: 850px) {
+      .container {
+        flex-direction: column;
+      }
+      .box, .box1 {
+        width: 100%;  
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+      <div class="logo">RS Restaurant</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="category.html">Category</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="loginpage.html">SignUp</a></li>
+        <li><a href="c.html"   class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+  
+    <div class="box1">
+      <h3>Contact Us</h3>
+      <!-- <form> -->
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Phone Number" required>
+        <textarea placeholder="Apna message yaha likhe" required></textarea>
+        <button type="">Submit</button>
+      <!-- </form> -->
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+
+
+

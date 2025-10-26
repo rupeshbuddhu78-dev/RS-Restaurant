@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RS Restaurant | Categories</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #ffffff;
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      overflow-x: hidden;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: rgb(30, 214, 162);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+      transition: all 0.3s ease;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 8px 14px;
+      border-radius: 5px;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #179fde;
+      color: #fff;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #179fde;
+    }
+    
+    body{
+      background: #fff8f0;
+    }
+    h1{
+      text-align: center;
+      margin: 30px 0;
+      color: #d35400;
+      font-size: 2rem;
+    }
+    .categories{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 50px;
+      padding: 0 30px 50px;
+      margin: 60px;
+
+    }
+    .card{
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .card:hover{
+      transform: translateY(-8px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+    .card img{
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .card h3{
+      text-align: center;
+      padding: 12px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+<nav>
+      <div class="logo">RS Restaurant</div>
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="category.html" class="active">Category</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="loginpage.html">SignUp</a></li>
+        <li><a href="c.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <h1>🍴 RS Restaurant Categories 🍴</h1>
+  <div class="categories">
+    <div class="card">
+      <img src="https://images.squarespace-cdn.com/content/v1/612d4825ee7c3b7ba3e215b7/1667458982443-N6XGU1PU7335QEMVUP7M/Delicious+food.png" alt="Indian Food">
+      <h3>Indian Food</h3>
+    </div>
+    <div class="card">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxfTyKiKOaifAdMwtibhG3I4czAMK8YQOMJg&s" alt="Fast Food">
+      <h3>Fast Food</h3>
+    </div>
+    <div class="card">
+      <img src="https://womenchefs.org/wp-content/uploads/2023/05/8-Amazing-Ina-Garten-Dessert-Recipes-To-Try-Today-800x530.jpg" alt="Desserts">
+      <h3>Desserts</h3>
+    </div>
+    <div class="card">
+      <img src="https://media.licdn.com/dms/image/v2/D5612AQEWaDWX3p8iDQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1675067694467?e=2147483647&v=beta&t=RXK1sz0QxKsECifOPd-o1vUa1MKrA96HKAHSDSHot0I" alt="Beverages">
+      <h3>Beverages</h3>
+    </div>
+    <div class="card">
+      <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Beef-with-Ramen-Noodles_EXPS_FT21_22747_F_1116_1.jpg" alt="Indian Food">
+      <h3>Quick & Easy Meals</h3>
+    </div>
+    <div class="card">
+      <img src="https://shriandsam.com/cdn/shop/articles/Untitled_design_116.png?v=1630749158&width=2240" alt="Fast Food">
+      <h3>Healthy Food</h3>
+    </div>
+    <div class="card">
+      <img src="https://www.traveltrademaldives.com/assets/2024/04/TTMMVT-Feature-Photo-2024-04-21T153222.482-672x428.jpg" alt="Desserts">
+      <h3>Breakfast Delights</h3>
+    </div>
+    <div class="card">
+      <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2019_05/2736521/190131-stock-taco-bar-food-ew-1220p.jpg" alt="Beverages">
+      <h3>Dinner</h3>
+    </div>
+     <div class="card">
+      <img src="https://blog.kulikulifoods.com/wp-content/uploads/2017/08/smoothies-2253423_128099-3-1078x660.jpg" alt="Desserts">
+      <h3>Smoothies & Juices</h3>
+    </div>
+    <div class="card">
+      <img src="https://i.ytimg.com/vi/FT5kLcUrFTc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAm_Oq8NHFuUXeEXLEyLk6JPviA9A" alt="Beverages">
+      <h3>Non-Veg</h3>
+    </div>
+  </div>
+
+</body>
+</html>
+  </div>
+
+</body>
+
+</html>
+
