@@ -11,9 +11,11 @@
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
+
     body {
       background-color: #f9f9f9;
     }
+
     nav {
       display: flex;
       justify-content: space-between;
@@ -24,19 +26,21 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      transition: all 0.3s ease;
     }
+
     .logo {
       font-size: 26px;
       font-weight: bold;
       color: rgb(30, 214, 162);
     }
+
     nav ul {
       display: flex;
       list-style: none;
       gap: 25px;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
+
     nav ul li a {
       text-decoration: none;
       color: #333;
@@ -44,19 +48,22 @@
       transition: 0.3s;
       padding: 8px 14px;
       border-radius: 5px;
+      display: block;
     }
+
     nav ul li a:hover,
     nav ul li a.active {
       background: #179fde;
       color: #fff;
     }
+
     .menu-toggle {
       display: none;
-      font-size: 30px;
+      font-size: 28px;
       cursor: pointer;
       color: #179fde;
-      transition: 0.3s;
     }
+
     .head {
       background: linear-gradient(to right, #b22222, #ff6347);
       color: #fff;
@@ -67,6 +74,7 @@
       letter-spacing: 2px;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
     }
+
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -74,6 +82,7 @@
       gap: 25px;
       padding: 40px 20px;
     }
+
     .box1 {
       background: #fff;
       width: 260px;
@@ -82,40 +91,48 @@
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .box1:hover {
       transform: translateY(-8px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
+
     .box1 img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
+
     .info {
       padding: 15px;
       text-align: center;
     }
+
     .info h3 {
       color: #b22222;
       margin-bottom: 10px;
       font-size: 20px;
     }
+
     .info p {
       color: #555;
       font-size: 15px;
       margin-bottom: 10px;
     }
+
     .price {
       font-weight: bold;
       color: #2e8b57;
       font-size: 18px;
       margin-bottom: 12px;
     }
+
     .buttons {
       display: flex;
       justify-content: center;
       gap: 10px;
     }
+
     .bt {
       background: #ff6347;
       color: white;
@@ -126,9 +143,11 @@
       cursor: pointer;
       transition: 0.3s;
     }
+
     .bt:hover {
       background: #2e8b57;
     }
+
     footer {
       background: #012033;
       color: white;
@@ -137,22 +156,22 @@
       font-size: 14px;
       margin-top: 40px;
     }
+
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
       }
       nav ul {
-        position: absolute;
-        top: 70px;
+        position: fixed;
+        top: 65px;
         left: -100%;
         flex-direction: column;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(5px);
+        background: white;
         width: 100%;
+        height: 100vh;
         text-align: center;
         gap: 0;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        transition: all 0.4s ease;
       }
       nav ul.active {
         left: 0;
@@ -161,17 +180,17 @@
         border-bottom: 1px solid #ddd;
       }
       nav ul li a {
-        display: block;
-        padding: 15px;
+        padding: 18px;
         font-size: 18px;
       }
     }
   </style>
 </head>
 <body>
+
   <nav>
     <div class="logo">RS Restaurant</div>
-    <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <ul id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="About.html">About</a></li>
@@ -182,9 +201,10 @@
     </ul>
   </nav>
 
-  <div class="head">🍽 RS Restaurant Menu 🍽</div>
+  <div class="head">🍽️ RS Restaurant Menu 🍽️</div>
 
   <div class="container">
+
     <div class="box1">
       <img src="https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg">
       <div class="info">
@@ -236,6 +256,85 @@
         </div>
       </div>
     </div>
+
+    <div class="box1">
+      <img src="https://media.istockphoto.com/id/637165584/photo/portion-of-french-fries-on-catering-platter.jpg?s=612x612&w=0&k=20&c=WRmdE5FB7hG32jH2A1L0t0c3f-ec5zZlmJWUXNU6QmM=">
+      <div class="info">
+        <h3>French Fries</h3>
+        <p>Crispy golden fries lightly salted — the perfect snack.</p>
+        <div class="price">₹70</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box1">
+      <img src="https://b.zmtcdn.com/data/dish_photos/670/a0528d2356ff13c7ffe90e5f94c5b670.jpg">
+      <div class="info">
+        <h3>Fried Rice</h3>
+        <p>Fluffy rice stir-fried with veggies and soy sauce.</p>
+        <div class="price">₹130</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box1">
+      <img src="https://preview.redd.it/fried-chicken-biryani-recipe-step-by-step-chicken-biryani-v0-xxwqpu8xjlxc1.jpeg?width=640&crop=smart&auto=webp&s=0f4f7bbed2bd563eba8a77c684830808efe5e1f0">
+      <div class="info">
+        <h3>Chicken Biryani</h3>
+        <p>Aromatic rice cooked with chicken and Indian spices.</p>
+        <div class="price">₹200</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box1">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/016/285/734/small_2x/paneer-khus-khus-curry-or-cottage-cheese-posto-masala-made-using-poppy-seeds-indian-recipe-free-photo.jpg">
+      <div class="info">
+        <h3>Shahi Paneer</h3>
+        <p>Rich & creamy paneer curry in royal buttery gravy.</p>
+        <div class="price">₹180</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box1">
+      <img src="https://www.eatingwell.com/thmb/6HYM2Tya8CJGxPo1rBAMRGDo8CY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Why-Does-Pizza-Taste-So-Much-Better-From-Restaurants-3fdcc2c1c04742209a8d5030127dae89.jpg">
+      <div class="info">
+        <h3>Pizza</h3>
+        <p>Cheesy pizza baked to perfection with fresh toppings.</p>
+        <div class="price">₹220</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box1">
+      <img src="https://www.unileverfoodsolutions.com.au/dam/global-ufs/mcos/anz/calcmenu/recipe/killer-recipes-update/californian-egg-roll-main-header-anz.jpg">
+      <div class="info">
+        <h3>Egg Roll</h3>
+        <p>Freshly rolled, perfectly fried — taste the crunch of our egg rolls.</p>
+        <div class="price">₹70</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <footer>
@@ -245,9 +344,7 @@
   <script>
     function toggleMenu() {
       const navLinks = document.getElementById('navLinks');
-      const toggle = document.getElementById('menuToggle');
       navLinks.classList.toggle('active');
-      toggle.textContent = navLinks.classList.contains('active') ? '' : '☰';
     }
   </script>
 </body>
