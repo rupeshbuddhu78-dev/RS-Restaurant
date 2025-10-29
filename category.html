@@ -18,26 +18,30 @@
 
     nav {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding: 15px 30px;
+      justify-content: center;
       background: #ffffff;
       box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
+      padding: 10px 0;
     }
 
     .logo {
       font-size: 26px;
       font-weight: bold;
       color: rgb(30, 214, 162);
+      margin-bottom: 10px;
+      text-align: center;
     }
 
     nav ul {
       display: flex;
       list-style: none;
       gap: 25px;
+      justify-content: center;
       transition: all 0.3s ease;
     }
 
@@ -61,6 +65,9 @@
       font-size: 28px;
       cursor: pointer;
       color: #179fde;
+      position: absolute;
+      right: 20px;
+      top: 15px;
     }
 
     h1 {
@@ -73,9 +80,10 @@
     .categories {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 50px;
+      gap: 40px;
       padding: 0 30px 50px;
-      margin: 60px;
+      margin: 30px;
+      justify-items: center;
     }
 
     .card {
@@ -85,6 +93,7 @@
       overflow: hidden;
       transition: transform 0.3s, box-shadow 0.3s;
       cursor: pointer;
+      width: 220px;
     }
 
     .card:hover {
@@ -104,10 +113,17 @@
       color: #2c3e50;
     }
 
+    /* Responsive Navbar */
     @media (max-width: 768px) {
+      nav {
+        align-items: flex-start;
+        padding: 15px 20px;
+      }
+
       .menu-toggle {
         display: block;
       }
+
       nav ul {
         position: absolute;
         top: 70px;
@@ -119,15 +135,23 @@
         gap: 0;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       }
+
       nav ul.active {
         left: 0;
       }
+
       nav ul li {
         border-bottom: 1px solid #ddd;
       }
+
       nav ul li a {
         display: block;
         padding: 15px;
+      }
+
+      .logo {
+        width: 100%;
+        text-align: left;
       }
     }
   </style>
@@ -147,6 +171,7 @@
   </nav>
 
   <h1>🍴 RS Restaurant Categories 🍴</h1>
+
   <div class="categories">
     <div class="card">
       <img src="https://images.squarespace-cdn.com/content/v1/612d4825ee7c3b7ba3e215b7/1667458982443-N6XGU1PU7335QEMVUP7M/Delicious+food.png" alt="Indian Food">
