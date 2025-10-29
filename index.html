@@ -23,7 +23,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      overflow-x: hidden;
     }
 
     .logo {
@@ -61,9 +60,32 @@
       color: #179fde;
     }
 
+    @media (max-width: 768px) {
+      nav ul {
+        position: absolute;
+        top: 65px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      nav ul.show {
+        left: 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    }
+
     .box2 {
       text-align: center;
-      background-image:url("https://i.pinimg.com/736x/9e/ea/b0/9eeab0fb045184bde87504e12a564b50.jpg");
+      background-image: url("https://i.pinimg.com/736x/9e/ea/b0/9eeab0fb045184bde87504e12a564b50.jpg");
       background-size: cover;
       background-position: center;
       padding: 90px 20px;
@@ -281,56 +303,6 @@
       background: #dd8888;
       color: white;
     }
-
-    @media (max-width: 800px) {
-      body {
-        overflow-x: hidden;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      nav ul {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        flex-direction: column;
-        background: white;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px 0;
-        transition: right 0.3s ease;
-      }
-
-      nav.active ul {
-        right: 0;
-      }
-
-      nav ul li {
-        margin: 15px 0;
-      }
-
-      html, body {
-        overscroll-behavior: none;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .box2 h1 {
-        font-size: 32px;
-      }
-
-      .box2 p {
-        font-size: 16px;
-      }
-
-      .hero h1 {
-        font-size: 26px;
-      }
-    }
   </style>
 </head>
 
@@ -339,7 +311,7 @@
     <nav>
       <div class="logo">RS Restaurant</div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <ul>
+      <ul id="nav-links">
         <li><a href="#" class="active">Home</a></li>
         <li><a href="About.html">About</a></li>
         <li><a href="category.html">Category</a></li>
@@ -410,7 +382,7 @@
         <img src="aman.jpg" alt="">
         <div class="stars">★★★★☆</div>
         <p>“Clean restaurant, friendly staff and delicious Paneer Butter Masala. Loved it!”</p>
-        <h4>—Aman Singh</h4>
+        <h4>— Aman Singh</h4>
       </div>
 
       <div class="review">
@@ -419,6 +391,7 @@
         <p>“Pizza quality is excellent. Would recommend everyone to try once.”</p>
         <h4>— Ritesh Kumar </h4>
       </div>
+
       <div class="review">
         <img src="ankit.jpg">
         <div class="stars">★★★★★</div>
@@ -480,16 +453,9 @@
 
   <script>
     function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('active');
-      document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+      const navLinks = document.getElementById('nav-links');
+      navLinks.classList.toggle('show');
     }
   </script>
 </body>
-
 </html>
-
-
-
-
-
