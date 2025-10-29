@@ -3,113 +3,140 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<style>
-  *{
-    margin:0;
-    padding:0;
-  }
-  nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: #ffffff;
-      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      overflow-x: hidden;
+  <title>RS Restaurant | SignUp</title>
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Poppins', sans-serif;
     }
-
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: rgb(30, 214, 162);
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 30px;
+      background:#ffffff;
+      box-shadow:0px 2px 8px rgba(0,0,0,0.1);
+      position:sticky;
+      top:0;
+      z-index:1000;
     }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-      transition: all 0.3s ease;
+    .logo{
+      font-size:26px;
+      font-weight:bold;
+      color:rgb(30,214,162);
     }
-
-    nav ul li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-      transition: 0.3s;
-      padding: 8px 14px;
-      border-radius: 5px;
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+      transition:all 0.3s ease;
     }
-
+    nav ul li a{
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+      transition:0.3s;
+      padding:8px 14px;
+      border-radius:5px;
+    }
     nav ul li a:hover,
-    nav ul li a.active {
-      background: #179fde;
-      color: #fff;
+    nav ul li a.active{
+      background:#179fde;
+      color:#fff;
+    }
+    .menu-toggle{
+      display:none;
+      font-size:30px;
+      cursor:pointer;
+      color:#179fde;
     }
 
-    .menu-toggle {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #179fde;
+    .container{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      background:#5cd1ef;
+      padding:20px;
     }
-  .container{
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
-    background: #5cd1ef;
-    display: flex;
-    justify-content: center;
-    align-items:center;
-  }
-  .box{
-    background-image:url("https://st2.depositphotos.com/2001755/5408/i/450/depositphotos_54081723-Beautiful-nature-landscape.jpg");
-    width: 300px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    border-radius: 5px;
-    padding:30px;
-  }
-  .box h3{
-    text-align: center;
-    font-weight: bolder;
-    font-size: 25px;
-    margin-top: 10px;
+    .box{
+      background-image:url("https://st2.depositphotos.com/2001755/5408/i/450/depositphotos_54081723-Beautiful-nature-landscape.jpg");
+      width:320px;
+      box-shadow:0px 0px 10px rgba(0,0,0,0.1);
+      border-radius:8px;
+      padding:25px;
+      background-size:cover;
+      background-position:center;
+    }
+    .box h3{
+      text-align:center;
+      font-weight:bolder;
+      font-size:25px;
+      margin-bottom:20px;
+      color:#000;
+    }
+    .box label{
+      display:block;
+      margin-top:10px;
+      font-weight:500;
+      color:#333;
+    }
+    .box input{
+      width:100%;
+      padding:10px;
+      margin-top:6px;
+      border:1px solid #ccc;
+      border-radius:5px;
+      font-size:14px;
+    }
+    .box button{
+      width:100%;
+      margin-top:15px;
+      padding:10px;
+      background:rgb(105,146,226);
+      color:white;
+      font-size:16px;
+      font-weight:600;
+      border-radius:5px;
+      border:none;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .box button:hover{
+      background:#8779e0;
+    }
 
-  }
-  .box label{
-    display: block;
-    padding: 0px 0px;
-     margin-top:10px;
-
-  }
-  .box input{
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-   
-  }
-  .box button{
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    background: rgb(105, 146, 226);
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-   border-radius: 5px;
-   border: none;
-  }
-  .box button:hover{
-    background: #8779e0;
-  }
-</style>
+    @media (max-width: 768px){
+      .menu-toggle{
+        display:block;
+      }
+      nav ul{
+        position:absolute;
+        top:60px;
+        left:0;
+        width:100%;
+        background:#ffffff;
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+        padding:15px 0;
+        box-shadow:0px 5px 10px rgba(0,0,0,0.1);
+        display:none;
+      }
+      nav ul.active{
+        display:flex;
+      }
+      nav ul li a{
+        font-size:18px;
+      }
+    }
+  </style>
+</head>
 <body>
   <header>
-  <nav>
+    <nav>
       <div class="logo">RS Restaurant</div>
       <div class="menu-toggle" onclick="toggleMenu()">☰</div>
       <ul>
@@ -117,39 +144,32 @@
         <li><a href="About.html">About</a></li>
         <li><a href="category.html">Category</a></li>
         <li><a href="menu.html">Menu</a></li>
-        <li><a href="loginpage.html"  class="active">SignUp</a></li>
+        <li><a href="loginpage.html" class="active">SignUp</a></li>
         <li><a href="c.html">Contact</a></li>
       </ul>
     </nav>
   </header>
-  <div class="container">
-  <div class="box"><h3>Signup Form</h3>
-    <!-- <form> -->
-      <label for="username">Username</label>
-      <input type="text" placeholder="Enter your username name" required>
-      <label for="Email">Email</label>
-      <input type="email" placeholder="Enter your Email" required>
-      <label for="password">Password</label>
-      <input type="password" placeholder="Password" required>
-      <label for="Confirm password">Confirm Password</label>
-      <input type="password" placeholder="Confirm Password" required>
-      <button type="">Signup</button>
-    <!-- </form> -->
 
+  <div class="container">
+    <div class="box">
+      <h3>Signup Form</h3>
+      <label>Username</label>
+      <input type="text" placeholder="Enter your username" required>
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" required>
+      <label>Password</label>
+      <input type="password" placeholder="Enter password" required>
+      <label>Confirm Password</label>
+      <input type="password" placeholder="Confirm password" required>
+      <button type="submit">Signup</button>
+    </div>
   </div>
-  </div>
-</body>
-<script>
-    function toggleMenu() {
-      const nav = document.querySelector('nav');
-      nav.classList.toggle('active');
-      document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+
+  <script>
+    function toggleMenu(){
+      const menu = document.querySelector('nav ul');
+      menu.classList.toggle('active');
     }
   </script>
+</body>
 </html>
-
-
-
-
-
-
