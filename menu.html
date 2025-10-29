@@ -9,13 +9,14 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: "Poppins", sans-serif;
     }
 
     body {
       background-color: #f9f9f9;
     }
 
+    /* Navbar */
     nav {
       display: flex;
       justify-content: space-between;
@@ -64,28 +65,85 @@
       color: #179fde;
     }
 
-    .head {
-      background: linear-gradient(to right, #b22222, #ff6347);
-      color: #fff;
+    /* Hero Section */
+    .hero {
+      background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover no-repeat;
+      color: white;
       text-align: center;
-      padding: 50px 20px;
-      font-size: 45px;
+      padding: 120px 20px;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-content h1 {
+      font-size: 50px;
       font-weight: 900;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      margin: 15px 0;
+      color: #f0f0f0;
+    }
+
+    .hero-content button {
+      background: #ff6347;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero-content button:hover {
+      background: #2e8b57;
+    }
+
+    /* Menu Section */
+    .menu-section {
+      text-align: center;
+      margin: 60px 0 30px;
+    }
+
+    .menu-section h2 {
+      font-size: 35px;
+      color: #b22222;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .menu-section p {
+      color: #555;
+      font-size: 16px;
     }
 
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 25px;
-      padding: 40px 20px;
+      padding: 40px 30px;
     }
 
     .box1 {
       background: #fff;
-      width: 260px;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       overflow: hidden;
@@ -110,13 +168,13 @@
 
     .info h3 {
       color: #b22222;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       font-size: 20px;
     }
 
     .info p {
       color: #555;
-      font-size: 15px;
+      font-size: 14px;
       margin-bottom: 10px;
     }
 
@@ -157,6 +215,7 @@
       margin-top: 40px;
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -183,6 +242,10 @@
         padding: 18px;
         font-size: 18px;
       }
+
+      .hero-content h1 {
+        font-size: 34px;
+      }
     }
   </style>
 </head>
@@ -201,42 +264,39 @@
     </ul>
   </nav>
 
-  <div class="head">🍽️ RS Restaurant Menu 🍽️</div>
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Delicious Meals, Just for You!</h1>
+      <p>Discover your favorite dishes freshly prepared by our chefs.</p>
+      <button>Order Now</button>
+    </div>
+  </section>
+
+  <section class="menu-section">
+    <h2>Our Specialy Menu</h2>
+    <p>Handpicked dishes made with love and fresh ingredients.</p>
+  </section>
 
   <div class="container">
-
-    <div class="box1">
-      <img src="https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg">
-      <div class="info">
-        <h3>Chowmein</h3>
-        <p>Street-style stir-fried noodles tossed with veggies and sauces.</p>
-        <div class="price">₹120</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://qul.imgix.net/fcf0abc5-9e48-4473-80fa-f7bfe0c67d80/512152_sld.jpg">
-      <div class="info">
-        <h3>Burger</h3>
-        <p>Juicy patty layered with cheese, veggies, and sauce in a soft bun.</p>
-        <div class="price">₹150</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
     <div class="box1">
       <img src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content9555.jpg">
       <div class="info">
         <h3>Sandwich</h3>
         <p>Fresh bread stuffed with veggies, cheese, and creamy mayo.</p>
         <div class="price">₹90</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="box1">
+      <img src="https://b.zmtcdn.com/data/dish_photos/670/a0528d2356ff13c7ffe90e5f94c5b670.jpg">
+      <div class="info">
+        <h3>Fried Rice</h3>
+        <p>Fluffy rice stir-fried with veggies and soy sauce.</p>
+        <div class="price">₹130</div>
         <div class="buttons">
           <button class="bt">Order Now</button>
           <button class="bt">Add to Cart</button>
@@ -343,8 +403,8 @@
 
   <script>
     function toggleMenu() {
-      const navLinks = document.getElementById('navLinks');
-      navLinks.classList.toggle('active');
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("active");
     }
   </script>
 </body>
