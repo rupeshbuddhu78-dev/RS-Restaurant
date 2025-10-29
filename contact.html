@@ -89,5 +89,12 @@
     </div>
     </div>
 </body>
-
+<script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+      document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+    }
+  </script>
 </html>
+
