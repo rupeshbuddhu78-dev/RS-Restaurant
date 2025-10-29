@@ -2,17 +2,18 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RS Restaurant | Menu</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
-nav {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS Restaurant | Menu</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -22,7 +23,6 @@ nav {
       position: sticky;
       top: 0;
       z-index: 1000;
-      overflow-x: hidden;
     }
 
     .logo {
@@ -59,273 +59,193 @@ nav {
       cursor: pointer;
       color: #179fde;
     }
-        
-        body {
-            background-color: #f9f9f9;
-        }
 
-       
-        .head {
-            background: linear-gradient(to right, #b22222, #ff6347);
-            color: #fff;
-            text-align: center;
-            padding: 50px 20px;
-            font-size: 45px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-        }
+    @media (max-width: 850px) {
+      nav ul {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        text-align: center;
+        gap: 15px;
+        padding: 20px 0;
+        display: none;
+      }
 
-      
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            padding: 40px 20px;
-        }
+      nav ul.active {
+        display: flex;
+      }
 
-        .box1 {
-            background: #fff;
-            width: 260px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+      .menu-toggle {
+        display: block;
+      }
+    }
 
-        .box1:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+    body {
+      background-color: #f9f9f9;
+    }
 
-        .box1 img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
+    .head {
+      background: linear-gradient(to right, #b22222, #ff6347);
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+      font-size: 45px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    }
 
-        .info {
-            padding: 15px;
-            text-align: center;
-        }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 40px 20px;
+    }
 
-        .info h3 {
-            color: #b22222;
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
+    .box1 {
+      background: #fff;
+      width: 260px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-        .info p {
-            color: #555;
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
+    .box1:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
 
-        .price {
-            font-weight: bold;
-            color: #2e8b57;
-            font-size: 18px;
-            margin-bottom: 12px;
-        }
+    .box1 img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
+    .info {
+      padding: 15px;
+      text-align: center;
+    }
 
-        .bt {
-            background: #ff6347;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 14px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+    .info h3 {
+      color: #b22222;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
 
-        .bt:hover {
-            background: #2e8b57;
-        }
+    .info p {
+      color: #555;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
 
-        footer {
-            background: #012033;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
-            margin-top: 40px;
-        }
-    </style>
+    .price {
+      font-weight: bold;
+      color: #2e8b57;
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .bt {
+      background: #ff6347;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .bt:hover {
+      background: #2e8b57;
+    }
+
+    footer {
+      background: #012033;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 
 <body>
-    <nav>
-      <div class="logo">RS Restaurant</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="category.html">Category</a></li>
-        <li><a href="menu.html"  class="active">Menu</a></li>
-        <li><a href="loginpage.html">SignUp</a></li>
-        <li><a href="c.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+  <nav>
+    <div class="logo">RS Restaurant</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul id="navList">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="category.html">Category</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="loginpage.html">SignUp</a></li>
+      <li><a href="c.html">Contact</a></li>
+    </ul>
+  </nav>
 
-    <div class="head">🍽️ RS Restaurant Menu 🍽️</div>
+  <div class="head">🍽️ RS Restaurant Menu 🍽️</div>
 
-    <div class="container">
-
-        <div class="box1">
-            <img
-                src="https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg">
-            <div class="info">
-                <h3>Chowmein</h3>
-                <p>Street-style stir-fried noodles tossed with veggies and sauces.</p>
-                <div class="price">₹120</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
+  <div class="container">
+    <div class="box1">
+      <img src="https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg">
+      <div class="info">
+        <h3>Chowmein</h3>
+        <p>Street-style stir-fried noodles tossed with veggies and sauces.</p>
+        <div class="price">₹120</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
         </div>
-
-        <div class="box1">
-            <img src="https://qul.imgix.net/fcf0abc5-9e48-4473-80fa-f7bfe0c67d80/512152_sld.jpg">
-            <div class="info">
-                <h3>Burger</h3>
-                <p>Juicy patty layered with cheese, veggies, and sauce in a soft bun.</p>
-                <div class="price">₹150</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content9555.jpg">
-            <div class="info">
-                <h3>Sandwich</h3>
-                <p>Fresh bread stuffed with veggies, cheese, and creamy mayo.</p>
-                <div class="price">₹90</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img
-                src="https://img500.exportersindia.com/product_images/bc-500/2023/9/12301398/paneer-momos-1690436501-7001753.jpeg">
-            <div class="info">
-                <h3>Momos</h3>
-                <p>Steamed dumplings filled with veggies or chicken & spicy dip.</p>
-                <div class="price">₹80</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img
-                src="https://media.istockphoto.com/id/637165584/photo/portion-of-french-fries-on-catering-platter.jpg?s=612x612&w=0&k=20&c=WRmdE5FB7hG32jH2A1L0t0c3f-ec5zZlmJWUXNU6QmM=">
-            <div class="info">
-                <h3>French Fries</h3>
-                <p>Crispy golden fries lightly salted — the perfect snack.</p>
-                <div class="price">₹70</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img src="https://b.zmtcdn.com/data/dish_photos/670/a0528d2356ff13c7ffe90e5f94c5b670.jpg">
-            <div class="info">
-                <h3>Fried Rice</h3>
-                <p>Fluffy rice stir-fried with veggies and soy sauce.</p>
-                <div class="price">₹130</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img
-                src="https://preview.redd.it/fried-chicken-biryani-recipe-step-by-step-chicken-biryani-v0-xxwqpu8xjlxc1.jpeg?width=640&crop=smart&auto=webp&s=0f4f7bbed2bd563eba8a77c684830808efe5e1f0">
-            <div class="info">
-                <h3>Chicken Biryani</h3>
-                <p>Aromatic rice cooked with chicken and Indian spices.</p>
-                <div class="price">₹200</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img
-                src="https://static.vecteezy.com/system/resources/thumbnails/016/285/734/small_2x/paneer-khus-khus-curry-or-cottage-cheese-posto-masala-made-using-poppy-seeds-indian-recipe-free-photo.jpg">
-            <div class="info">
-                <h3>Shahi Paneer</h3>
-                <p>Rich & creamy paneer curry in royal buttery gravy.</p>
-                <div class="price">₹180</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img
-                src="https://www.eatingwell.com/thmb/6HYM2Tya8CJGxPo1rBAMRGDo8CY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Why-Does-Pizza-Taste-So-Much-Better-From-Restaurants-3fdcc2c1c04742209a8d5030127dae89.jpg">
-            <div class="info">
-                <h3>Pizza</h3>
-                <p>Cheesy pizza baked to perfection with fresh toppings.</p>
-                <div class="price">₹220</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="box1">
-            <img
-                src="https://www.unileverfoodsolutions.com.au/dam/global-ufs/mcos/anz/calcmenu/recipe/killer-recipes-update/californian-egg-roll-main-header-anz.jpg">
-            <div class="info">
-                <h3>Egg Roll</h3>
-                <p>Freshly rolled, perfectly fried — taste the crunch of our egg rolls.</p>
-                <div class="price">₹70</div>
-                <div class="buttons">
-                    <button class="bt">Order Now</button>
-                    <button class="bt">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-
+      </div>
     </div>
 
-    <footer>
-        © 2025 RS Restaurant | All Rights Reserved
-    </footer>
+    <div class="box1">
+      <img src="https://qul.imgix.net/fcf0abc5-9e48-4473-80fa-f7bfe0c67d80/512152_sld.jpg">
+      <div class="info">
+        <h3>Burger</h3>
+        <p>Juicy patty layered with cheese, veggies, and sauce in a soft bun.</p>
+        <div class="price">₹150</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
 
+    <div class="box1">
+      <img src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content9555.jpg">
+      <div class="info">
+        <h3>Sandwich</h3>
+        <p>Fresh bread stuffed with veggies, cheese, and creamy mayo.</p>
+        <div class="price">₹90</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2025 RS Restaurant | All Rights Reserved</footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navList").classList.toggle("active");
+    }
+  </script>
 </body>
 
 </html>
-
-
-
