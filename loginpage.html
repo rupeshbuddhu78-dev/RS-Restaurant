@@ -9,31 +9,31 @@
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
     }
-    nav{
+    nav {
       display:flex;
       justify-content:space-between;
       align-items:center;
       padding:15px 30px;
       background:#ffffff;
-      box-shadow:0px 2px 8px rgba(0,0,0,0.1);
+      box-shadow:0px 2px 8px rgba(0, 0, 0, 0.1);
       position:sticky;
       top:0;
       z-index:1000;
     }
-    .logo{
+    .logo {
       font-size:26px;
       font-weight:bold;
       color:rgb(30,214,162);
     }
-    nav ul{
+    nav ul {
       display:flex;
       list-style:none;
       gap:25px;
       transition:all 0.3s ease;
     }
-    nav ul li a{
+    nav ul li a {
       text-decoration:none;
       color:#333;
       font-weight:500;
@@ -42,58 +42,50 @@
       border-radius:5px;
     }
     nav ul li a:hover,
-    nav ul li a.active{
+    nav ul li a.active {
       background:#179fde;
       color:#fff;
     }
-    .menu-toggle{
+    .menu-toggle {
       display:none;
-      font-size:30px;
+      font-size:28px;
       cursor:pointer;
       color:#179fde;
     }
 
-    .container{
+    .container {
+      height:100vh;
+      background:#5cd1ef;
       display:flex;
       justify-content:center;
       align-items:center;
-      min-height:100vh;
-      background:#5cd1ef;
-      padding:20px;
     }
-    .box{
+    .box {
       background-image:url("https://st2.depositphotos.com/2001755/5408/i/450/depositphotos_54081723-Beautiful-nature-landscape.jpg");
-      width:320px;
+      width:300px;
       box-shadow:0px 0px 10px rgba(0,0,0,0.1);
-      border-radius:8px;
-      padding:25px;
-      background-size:cover;
-      background-position:center;
+      border-radius:5px;
+      padding:30px;
     }
-    .box h3{
+    .box h3 {
       text-align:center;
       font-weight:bolder;
       font-size:25px;
-      margin-bottom:20px;
-      color:#000;
+      margin-top:10px;
     }
-    .box label{
+    .box label {
       display:block;
       margin-top:10px;
-      font-weight:500;
-      color:#333;
     }
-    .box input{
+    .box input {
       width:100%;
       padding:10px;
-      margin-top:6px;
       border:1px solid #ccc;
       border-radius:5px;
-      font-size:14px;
     }
-    .box button{
+    .box button {
       width:100%;
-      margin-top:15px;
+      margin-top:10px;
       padding:10px;
       background:rgb(105,146,226);
       color:white;
@@ -101,17 +93,29 @@
       font-weight:600;
       border-radius:5px;
       border:none;
-      cursor:pointer;
-      transition:0.3s;
     }
-    .box button:hover{
+    .box button:hover {
       background:#8779e0;
     }
+    .links {
+      text-align:center;
+      margin-top:15px;
+    }
+    .links a {
+      display:block;
+      color:#000;
+      text-decoration:none;
+      font-size:14px;
+      margin-top:6px;
+      transition:0.3s;
+    }
+    .links a:hover {
+      color:#179fde;
+      text-decoration:underline;
+    }
 
-    @media (max-width: 768px){
-      .menu-toggle{
-        display:block;
-      }
+    @media (max-width:768px){
+      .menu-toggle{display:block;}
       nav ul{
         position:absolute;
         top:60px;
@@ -119,18 +123,14 @@
         width:100%;
         background:#ffffff;
         flex-direction:column;
-        gap:15px;
+        gap:12px;
         text-align:center;
         padding:15px 0;
-        box-shadow:0px 5px 10px rgba(0,0,0,0.1);
         display:none;
+        box-shadow:0 4px 10px rgba(0,0,0,0.1);
       }
-      nav ul.active{
-        display:flex;
-      }
-      nav ul li a{
-        font-size:18px;
-      }
+      nav ul.active{display:flex;}
+      nav ul li a{font-size:18px;padding:10px 0;}
     }
   </style>
 </head>
@@ -152,22 +152,27 @@
 
   <div class="container">
     <div class="box">
-      <h3>Signup Form</h3>
-      <label>Username</label>
+      <h3>Create Account</h3>
+      <label for="username">Username</label>
       <input type="text" placeholder="Enter your username" required>
-      <label>Email</label>
+      <label for="Email">Email</label>
       <input type="email" placeholder="Enter your email" required>
-      <label>Password</label>
+      <label for="password">Password</label>
       <input type="password" placeholder="Enter password" required>
-      <label>Confirm Password</label>
+      <label for="Confirm password">Confirm Password</label>
       <input type="password" placeholder="Confirm password" required>
-      <button type="submit">Signup</button>
+      <button type="">Sign Up</button>
+
+      <div class="links">
+        <a href="login.html">Already have an account? Login</a>
+        <a href="forgot.html">Forgot Password?</a>
+      </div>
     </div>
   </div>
 
   <script>
     function toggleMenu(){
-      const menu = document.querySelector('nav ul');
+      const menu=document.querySelector('nav ul');
       menu.classList.toggle('active');
     }
   </script>
