@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Restaurant | Menu</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
-
+    body {
+      background-color: #f9f9f9;
+    }
     nav {
       display: flex;
       justify-content: space-between;
@@ -23,21 +24,19 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      transition: all 0.3s ease;
     }
-
     .logo {
       font-size: 26px;
       font-weight: bold;
       color: rgb(30, 214, 162);
     }
-
     nav ul {
       display: flex;
       list-style: none;
       gap: 25px;
       transition: all 0.3s ease;
     }
-
     nav ul li a {
       text-decoration: none;
       color: #333;
@@ -46,47 +45,18 @@
       padding: 8px 14px;
       border-radius: 5px;
     }
-
     nav ul li a:hover,
     nav ul li a.active {
       background: #179fde;
       color: #fff;
     }
-
     .menu-toggle {
       display: none;
-      font-size: 28px;
+      font-size: 30px;
       cursor: pointer;
       color: #179fde;
+      transition: 0.3s;
     }
-
-    @media (max-width: 850px) {
-      nav ul {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        flex-direction: column;
-        background: white;
-        text-align: center;
-        gap: 15px;
-        padding: 20px 0;
-        display: none;
-      }
-
-      nav ul.active {
-        display: flex;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    body {
-      background-color: #f9f9f9;
-    }
-
     .head {
       background: linear-gradient(to right, #b22222, #ff6347);
       color: #fff;
@@ -97,7 +67,6 @@
       letter-spacing: 2px;
       text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
     }
-
     .container {
       display: flex;
       flex-wrap: wrap;
@@ -105,7 +74,6 @@
       gap: 25px;
       padding: 40px 20px;
     }
-
     .box1 {
       background: #fff;
       width: 260px;
@@ -114,48 +82,40 @@
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
     .box1:hover {
       transform: translateY(-8px);
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
-
     .box1 img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
-
     .info {
       padding: 15px;
       text-align: center;
     }
-
     .info h3 {
       color: #b22222;
       margin-bottom: 10px;
       font-size: 20px;
     }
-
     .info p {
       color: #555;
       font-size: 15px;
       margin-bottom: 10px;
     }
-
     .price {
       font-weight: bold;
       color: #2e8b57;
       font-size: 18px;
       margin-bottom: 12px;
     }
-
     .buttons {
       display: flex;
       justify-content: center;
       gap: 10px;
     }
-
     .bt {
       background: #ff6347;
       color: white;
@@ -166,11 +126,9 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
     .bt:hover {
       background: #2e8b57;
     }
-
     footer {
       background: #012033;
       color: white;
@@ -179,14 +137,42 @@
       font-size: 14px;
       margin-top: 40px;
     }
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      nav ul {
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(5px);
+        width: 100%;
+        text-align: center;
+        gap: 0;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.4s ease;
+      }
+      nav ul.active {
+        left: 0;
+      }
+      nav ul li {
+        border-bottom: 1px solid #ddd;
+      }
+      nav ul li a {
+        display: block;
+        padding: 15px;
+        font-size: 18px;
+      }
+    }
   </style>
 </head>
-
 <body>
   <nav>
     <div class="logo">RS Restaurant</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <ul id="navList">
+    <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
+    <ul id="navLinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="category.html">Category</a></li>
@@ -196,7 +182,7 @@
     </ul>
   </nav>
 
-  <div class="head">🍽️ RS Restaurant Menu 🍽️</div>
+  <div class="head">🍽 RS Restaurant Menu 🍽</div>
 
   <div class="container">
     <div class="box1">
@@ -237,15 +223,32 @@
         </div>
       </div>
     </div>
+
+    <div class="box1">
+      <img src="https://img500.exportersindia.com/product_images/bc-500/2023/9/12301398/paneer-momos-1690436501-7001753.jpeg">
+      <div class="info">
+        <h3>Momos</h3>
+        <p>Steamed dumplings filled with veggies or chicken & spicy dip.</p>
+        <div class="price">₹80</div>
+        <div class="buttons">
+          <button class="bt">Order Now</button>
+          <button class="bt">Add to Cart</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <footer>© 2025 RS Restaurant | All Rights Reserved</footer>
+  <footer>
+    © 2025 RS Restaurant | All Rights Reserved
+  </footer>
 
   <script>
     function toggleMenu() {
-      document.getElementById("navList").classList.toggle("active");
+      const navLinks = document.getElementById('navLinks');
+      const toggle = document.getElementById('menuToggle');
+      navLinks.classList.toggle('active');
+      toggle.textContent = navLinks.classList.contains('active') ? '' : '☰';
     }
   </script>
 </body>
-
 </html>
