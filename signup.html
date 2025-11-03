@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS Restaurant - Signup</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS Restaurant - Login</title>
   <style>
     * {
       margin: 0;
@@ -37,46 +37,19 @@
       display: flex;
       list-style: none;
       gap: 25px;
-      transition: all 0.3s ease;
     }
     nav ul li a {
       text-decoration: none;
       color: #fff;
       font-weight: 500;
-      transition: 0.3s;
       padding: 8px 14px;
       border-radius: 5px;
+      transition: 0.3s;
     }
     nav ul li a:hover,
     nav ul li a.active {
       background: rgba(255,255,255,0.25);
       color: #ffeb3b;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #fff;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        position: absolute;
-        top: 65px;
-        left: -100%;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(0,0,0,0.6);
-        backdrop-filter: blur(8px);
-        padding: 20px 0;
-        text-align: center;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-      }
-      nav ul.show {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
     }
     .container {
       display: flex;
@@ -147,64 +120,55 @@
   <header>
     <nav>
       <div class="logo">RS Restaurant</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <ul id="nav-links">
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="About.html">About</a></li>
         <li><a href="category.html">Category</a></li>
         <li><a href="menu.html">Menu</a></li>
-        <li><a href="loginpage.html" class="active">SignUp</a></li>
-        <li><a href="c.html">Contact</a></li>
+        <li><a href="signup.html">SignUp</a></li>
+        <li><a href="loginpage.html" class="active">Login</a></li>
       </ul>
     </nav>
   </header>
+
   <div class="container">
     <div class="box">
-      <h3>Create Account</h3>
-      <form>
-        <label for="username">Username</label>
-        <input type="text" placeholder="Enter your username" required>
-        <label for="Email">Email</label>
-        <input type="email" placeholder="Enter your email" required>
-        <label for="password">Password</label>
-        <input type="password" placeholder="Enter password" required>
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" placeholder="Confirm password" required>
-        <button type="submit">Sign Up</button>
+      <h3>Welcome Back</h3>
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
         <div class="links">
           <a href="#">Forgot Password?</a><br>
-          <a href="login.html">Already have an account? Login</a>
+          <a href="signup.html">Don’t have an account? SignUp</a>
         </div>
       </form>
     </div>
   </div>
+
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById('nav-links');
-      navLinks.classList.toggle('show');
-    }
-    document.getElementById("signupForm").addEventListener("submit", function (e) {
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
       e.preventDefault();
-      const username = document.getElementById("username").value.trim();
+
       const email = document.getElementById("email").value.trim();
       const password = document.getElementById("password").value.trim();
-      const confirm = document.getElementById("confirm").value.trim();
+      const users = JSON.parse(localStorage.getItem("users")) || [];
 
-      if (password !== confirm) {
-        alert("Passwords do not match!");
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        alert("Invalid email or password!");
         return;
       }
 
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      if (users.find(u => u.email === email)) {
-        alert("User already exists!");
-        return;
-      }
-
-      users.push({ username, email, password });
-      localStorage.setItem("users", JSON.stringify(users));
-      alert("Signup successful! Please login now.");
-      window.location.href = "loginpage.html";
+     
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      alert("Login successful!");
+      window.location.href = "index.html";
     });
   </script>
 </body>
