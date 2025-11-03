@@ -183,6 +183,30 @@
       const navLinks = document.getElementById('nav-links');
       navLinks.classList.toggle('show');
     }
+    document.getElementById("signupForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const confirm = document.getElementById("confirm").value.trim();
+
+      if (password !== confirm) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      if (users.find(u => u.email === email)) {
+        alert("User already exists!");
+        return;
+      }
+
+      users.push({ username, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+      alert("Signup successful! Please login now.");
+      window.location.href = "loginpage.html";
+    });
   </script>
 </body>
 </html>
+
