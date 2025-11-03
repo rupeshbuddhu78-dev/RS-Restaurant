@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RS Restaurant - Login</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: url("https://images.unsplash.com/photo-1551782450-17144efb9c50?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
+      background-size: cover;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: rgba(255,255,255,0.25);
+      color: #ffeb3b;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 90vh;
+      backdrop-filter: blur(4px);
+    }
+    .box {
+      background: rgba(0, 0, 0, 0.55);
+      width: 320px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      padding: 30px;
+      color: #fff;
+    }
+    .box h3 {
+      text-align: center;
+      font-weight: bold;
+      font-size: 25px;
+      margin-bottom: 15px;
+      color: #ffeb3b;
+      text-shadow: 1px 1px 2px #000;
+    }
+    .box label {
+      display: block;
+      margin-top: 10px;
+      color: #fff;
+    }
+    .box input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .box button {
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+      background: #ff9800;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .box button:hover {
+      background: #ffb300;
+    }
+    .links {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .links a {
+      color: #ffeb3b;
+      text-decoration: underline;
+      font-size: 14px;
+    }
+    .links a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">RS Restaurant</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+        <li><a href="category.html">Category</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="signup.html">SignUp</a></li>
+        <li><a href="loginpage.html" class="active">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="box">
+      <h3>Welcome Back</h3>
+      <form id="loginForm">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+
+        <button type="submit">Login</button>
+        <div class="links">
+          <a href="#">Forgot Password?</a><br>
+          <a href="signup.html">Don’t have an account? SignUp</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (!user) {
+        alert("Invalid email or password!");
+        return;
+      }
+
+     
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      alert("Login successful!");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
