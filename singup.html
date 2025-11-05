@@ -161,28 +161,35 @@
   <div class="container">
     <div class="box">
       <h3>Create Account</h3>
-      <form>
+      
+      <form id="signupForm">
         <label for="username">Username</label>
-        <input type="text" placeholder="Enter your username" required>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        
         <label for="Email">Email</label>
-        <input type="email" placeholder="Enter your email" required>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        
         <label for="password">Password</label>
-        <input type="password" placeholder="Enter password" required>
+        <input type="password" id="password" placeholder="Enter password" required>
+        
         <label for="confirm-password">Confirm Password</label>
-        <input type="password" placeholder="Confirm password" required>
+        <input type="password" id="confirm" placeholder="Confirm password" required>
+        
         <button type="submit">Sign Up</button>
         <div class="links">
           <a href="#">Forgot Password?</a><br>
-          <a href="signup.html">Already have an account? Login</a>
+          <a href="loginpage.html">Already have an account? Login</a>
         </div>
       </form>
-    </div>
+      </div>
   </div>
   <script>
     function toggleMenu() {
       const navLinks = document.getElementById('nav-links');
       navLinks.classList.toggle('show');
     }
+    
+    // Yeh script ab upar di gayi IDs ke saath kaam karegi
     document.getElementById("signupForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const username = document.getElementById("username").value.trim();
@@ -204,11 +211,8 @@
       users.push({ username, email, password });
       localStorage.setItem("users", JSON.stringify(users));
       alert("Signup successful! Please login now.");
-      window.location.href = "loginpage.html";
+      window.location.href = "loginpage.html"; // Aapne signup.html likha tha, maine loginpage.html kar diya hai
     });
   </script>
 </body>
 </html>
-
-
-
