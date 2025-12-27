@@ -264,21 +264,21 @@
 
 
     // this part for absoulte icon in input
-    let show = ture;
+    let show = false;
     function togglePassword() {
       let pass = document.getElementById("eye");
       let emoji = document.getElementById("hide");
 
-      if (show === ture) {
+      if (show === false) {
         pass.type = "text";
         emoji.innerText = "😉"
 
-        show = false;
+        show = true;
       }
       else {
         pass.type = "password";
         emoji.innerText = "🙈";
-        show = ture;
+        show = false;
       }
     }
     let show1 = false;
@@ -300,4 +300,5 @@
 </body>
 
 </html>
+
 
