@@ -14,27 +14,38 @@
       flex-direction: column;
     }
 
-    /* Navbar styling same as other pages */
+    /* --- RESPONSIVE NAVBAR STYLING --- */
     nav {
       display: flex; justify-content: space-between; align-items: center; padding: 15px 30px;
-      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); 
+      position: sticky; top: 0; z-index: 1000;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .logo { font-size: 26px; font-weight: bold; color: rgb(30, 214, 162); text-transform: uppercase; }
-    nav ul { display: flex; list-style: none; gap: 20px; }
-    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; padding: 8px 12px; }
-    nav ul li a:hover { color: rgb(30, 214, 162); }
 
-    /* Signup Form Container */
+    .logo { font-size: 26px; font-weight: bold; color: rgb(30, 214, 162); text-transform: uppercase; }
+
+    nav ul { display: flex; list-style: none; gap: 20px; }
+    
+    nav ul li a { 
+      text-decoration: none; color: #fff; font-weight: 500; 
+      transition: 0.3s; padding: 8px 12px; border-radius: 5px;
+    }
+    
+    nav ul li a:hover { background: rgb(30, 214, 162); color: #000; }
+
+    .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: rgb(30, 214, 162); }
+
+    /* --- FORM STYLING (SAME AS BEFORE) --- */
     .container {
-      flex: 1; display: flex; justify-content: center; align-items: center;
+      flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px;
     }
 
     .form-box {
       background: rgba(0, 0, 0, 0.75);
       padding: 40px;
       border-radius: 10px;
-      width: 400px;
+      width: 100%;
+      max-width: 400px; /* Mobile fix */
       color: white;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
       border: 1px solid rgba(255,255,255,0.1);
@@ -58,13 +69,28 @@
 
     .link-text { text-align: center; margin-top: 15px; font-size: 14px; }
     .link-text a { color: rgb(30, 214, 162); text-decoration: none; }
+
+    /* --- MOBILE MEDIA QUERY (NAVBAR FIX) --- */
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      
+      nav ul { 
+        position: fixed; top: 60px; left: -100%; width: 100%; height: 100vh; 
+        flex-direction: column; background: #000; text-align: center; 
+        padding-top: 50px; transition: 0.3s; 
+      }
+      
+      nav ul.show { left: 0; }
+      nav ul li a { display: block; font-size: 18px; margin: 10px 0; }
+    }
   </style>
 </head>
 <body>
 
   <nav>
     <div class="logo">RS Restaurant</div>
-    <ul>
+    <div class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('show')">☰</div>
+    <ul id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="login.html">Login</a></li>
     </ul>
