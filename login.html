@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Restaurant | Login</title>
   <style>
-    /* Same Design as Signup */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    
+    /* --- COMMON STYLES --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
     body {
       background: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop") no-repeat center center/cover;
       height: 100vh;
@@ -15,51 +21,172 @@
       flex-direction: column;
     }
 
+    /* --- RESPONSIVE NAVBAR STYLING --- */
     nav {
-      display: flex; justify-content: space-between; align-items: center; padding: 15px 30px;
-      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
-    .logo { font-size: 26px; font-weight: bold; color: rgb(30, 214, 162); text-transform: uppercase; }
-    nav ul { display: flex; list-style: none; gap: 20px; }
-    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; padding: 8px 12px; }
-    nav ul li a:hover { color: rgb(30, 214, 162); }
 
-    .container { flex: 1; display: flex; justify-content: center; align-items: center; }
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+      color: rgb(30, 214, 162);
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      transition: 0.3s;
+      padding: 8px 12px;
+      border-radius: 5px;
+    }
+
+    nav ul li a:hover {
+      background: rgb(30, 214, 162);
+      color: #000;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: rgb(30, 214, 162);
+    }
+
+    /* --- FORM STYLING --- */
+    .container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
     .form-box {
       background: rgba(0, 0, 0, 0.75);
       padding: 40px;
       border-radius: 10px;
-      width: 350px;
+      width: 100%;
+      max-width: 400px;
+      /* Mobile Friendly Width */
       color: white;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .form-box h2 { text-align: center; color: rgb(30, 214, 162); margin-bottom: 20px; }
-    .input-group { margin-bottom: 15px; }
-    .input-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #ddd; }
+    .form-box h2 {
+      text-align: center;
+      color: rgb(30, 214, 162);
+      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
     .input-group input {
-      width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #555;
-      background: rgba(255,255,255,0.1); color: white; outline: none;
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #555;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      outline: none;
     }
-    
+
+    .input-group input:focus {
+      border-color: rgb(30, 214, 162);
+    }
+
     .btn-submit {
-      width: 100%; padding: 12px; background: rgb(30, 214, 162); border: none;
-      color: white; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; margin-top: 10px;
+      width: 100%;
+      padding: 12px;
+      background: rgb(30, 214, 162);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 10px;
     }
-    .btn-submit:hover { background: #179fde; }
-    
-    .link-text { text-align: center; margin-top: 15px; font-size: 14px; }
-    .link-text a { color: rgb(30, 214, 162); text-decoration: none; }
+
+    .btn-submit:hover {
+      background: #179fde;
+    }
+
+    .link-text {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .link-text a {
+      color: rgb(30, 214, 162);
+      text-decoration: none;
+    }
+
+    /* --- MOBILE MEDIA QUERY (NAVBAR FIX) --- */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        background: #000;
+        text-align: center;
+        padding-top: 50px;
+        transition: 0.3s;
+      }
+
+      nav ul.show {
+        left: 0;
+      }
+
+      nav ul li a {
+        display: block;
+        font-size: 18px;
+        margin: 10px 0;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <nav>
     <div class="logo">RS Restaurant</div>
-    <ul>
+    <div class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('show')">☰</div>
+    <ul id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="signup.html">Sign Up</a></li>
     </ul>
@@ -68,6 +195,7 @@
   <div class="container">
     <div class="form-box">
       <h2>Welcome Back</h2>
+
       <div class="input-group">
         <label>Email Address</label>
         <input type="email" id="login-email" placeholder="Enter your email">
@@ -78,39 +206,38 @@
       </div>
 
       <button onclick="loginUser()" class="btn-submit">Login</button>
-      
+
       <p class="link-text">Don't have an account? <a href="signup.html">Sign Up here</a></p>
     </div>
   </div>
 
   <script>
     function loginUser() {
-      // 1. User ne jo input dala wo lo
+      // 1. User Inputs
       const emailInput = document.getElementById('login-email').value;
       const passInput = document.getElementById('login-password').value;
 
-      // 2. LocalStorage se data nikalo (Note: Key 'rsUser' hi honi chahiye)
+      // 2. Get Data from LocalStorage
       const storedData = localStorage.getItem('rsUser');
 
-      // 3. Check: Agar data nahi hai (Matlab signup hi nahi kiya)
+      // 3. Validation
       if (!storedData) {
         alert("Account nahi mila! Pehle Signup karein.");
         return;
       }
 
-      // 4. Data ko Object me badlo
+      // 4. Check Credentials
       const user = JSON.parse(storedData);
 
-      // 5. Match karo
       if (emailInput === user.email && passInput === user.password) {
         alert("Login Successful! Welcome " + user.name);
-        // My Account page par bhej do
-        window.location.href = "myaccount.html";
+        window.location.href = "myaccount.html"; // Redirect to Profile
       } else {
-        alert("Ghalat Email ya Password!");
+        alert("Ghalat Email ya Password! Phir se try karein.");
       }
     }
   </script>
 
 </body>
+
 </html>
