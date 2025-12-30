@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Restaurant | My Profile</title>
+
+    <style>
+        /* --- CSS DESIGN --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Full Page Background Image with Dark Overlay */
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #fff;
+            /* Text color white for dark bg */
+        }
+
+        /* Navbar Style (Slightly Transparent) */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            /* White but slightly see-through */
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: rgb(30, 214, 162);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: 0.3s;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: #179fde;
+            color: #fff;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #179fde;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 20px;
+        }
+
+        /* --- GLASSMORPHISM PROFILE CARD --- */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.15);
+            /* Glass effect base */
+            backdrop-filter: blur(15px);
+            /* Blurring the background */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            /* Subtle border */
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            text-align: center;
+            display: none;
+            /* JS will show this */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, rgb(30, 214, 162), #179fde);
+            /* RS Theme Gradient */
+            padding: 50px 20px 30px;
+            color: white;
+            position: relative;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            object-fit: cover;
+            margin-bottom: 15px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .user-tag {
+            font-size: 14px;
+            opacity: 0.9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .card-body {
+            padding: 40px;
+            color: #fff;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            /* Subtle divider */
+            text-align: left;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 500;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-value {
+            font-weight: 600;
+            color: #fff;
+            font-size: 17px;
+        }
+
+        /* Buttons */
+        .btn-container {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-logout {
+            background: #ff4d4d;
+            color: white;
+        }
+
+        .btn-logout:hover {
+            background: #d94328;
+            transform: translateY(-3px);
+        }
+
+        .btn-orders {
+            background: #179fde;
+            color: white;
+        }
+
+        .btn-orders:hover {
+            background: #107bb0;
+            transform: translateY(-3px);
+        }
+
+        /* Login Warning (Glass style) */
+        .login-warning {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            display: none;
+            color: #fff;
+        }
+
+        .login-warning h2 {
+            color: #ff6347;
+            margin-bottom: 20px;
+            font-size: 30px;
+        }
+
+        .btn-login {
+            background: rgb(30, 214, 162);
+            color: white;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-3px);
+            background: #25a985;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #bbb;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 65px;
+                left: -100%;
+                width: 100%;
+                height: 100vh;
+                flex-direction: column;
+                background: #fff;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                transition: 0.3s;
+            }
+
+            nav ul.show {
+                left: 0;
+            }
+
+            nav ul li a {
+                color: #333;
+            }
+
+            .info-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .info-value {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">RS Restaurant</div>
+        <div class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('show')">☰</div>
+        <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="myorders.html">My Orders</a></li>
+            <li><a href="myaccount.html" class="active" style="color: #179fde;">My Account</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <div id="profile-section" class="profile-card">
+            <div class="card-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/2922/2922510.png" alt="User" class="profile-img">
+                <h2 class="user-name" id="display-name">Guest User</h2>
+                <p class="user-tag">⭐ RS Premium Member</p>
+            </div>
+
+            <div class="card-body">
+                <div class="info-row">
+                    <span class="info-label">👤 Full Name</span>
+                    <span class="info-value" id="field-name">...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📧 Email Address</span>
+                    <span class="info-value" id="field-email">...</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📞 Phone Number</span>
+                    <span class="info-value" id="field-phone">Not Provided</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">📅 Member Since</span>
+                    <span class="info-value" id="field-date">Today</span>
+                </div>
+
+                <div class="btn-container">
+                    <a href="myorders.html" class="btn btn-orders">📦 My Orders</a>
+                    <button onclick="logoutUser()" class="btn btn-logout">🚪 Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="warning-section" class="login-warning">
+            <h2>🔒 Access Denied</h2>
+            <p style="color: #ddd; margin-bottom: 30px; font-size: 18px;">Please login to view your profile details.</p>
+            <a href="loginpage.html" class="btn btn-login">Go to Login Page</a>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 RS Restaurant | All Rights Reserved | Designed with ❤ By Rupesh Kumar</p>
+    </footer>
+
+    <script>
+        // --- JAVASCRIPT LOGIC (Same as before, just works with new design) ---
+
+        // 1. Get Data
+        let userDataString = localStorage.getItem('rsUser');
+
+        const profileSection = document.getElementById('profile-section');
+        const warningSection = document.getElementById('warning-section');
+
+        if (userDataString) {
+            // --- CASE A: USER LOGGED IN ---
+            let user = JSON.parse(userDataString);
+
+            warningSection.style.display = 'none';
+            profileSection.style.display = 'block';
+
+            document.getElementById('display-name').innerText = user.name || "User";
+            document.getElementById('field-name').innerText = user.name || "N/A";
+            document.getElementById('field-email').innerText = user.email || "N/A";
+
+            if (user.phone) {
+                document.getElementById('field-phone').innerText = user.phone;
+            }
+            if (user.joined) {
+                document.getElementById('field-date').innerText = user.joined;
+            }
+
+        } else {
+            // --- CASE B: USER LOGGED OUT ---
+            profileSection.style.display = 'none';
+            warningSection.style.display = 'block';
+        }
+
+        // 2. LOGOUT FUNCTION
+        function logoutUser() {
+            if (confirm("Are you sure you want to Log Out?")) {
+                localStorage.removeItem('rsUser');
+                alert("Logged out successfully!");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

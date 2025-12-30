@@ -1,169 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Restaurant | Categories</title>
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
     }
-    body{
-      background:#fff8f0;
-      color:#333;
+
+    body {
+      background: #fff8f0;
+      color: #333;
     }
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:15px 30px;
-      background:#fff;
-      box-shadow:0 2px 8px rgba(0,0,0,0.1);
-      position:sticky;
-      top:0;
-      z-index:1000;
+
+    /* --- Navbar Styling (Consistent with Index/Menu) --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #ffffff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .logo{
-      font-size:26px;
-      font-weight:700;
-      color:rgb(30,214,162);
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: rgb(30, 214, 162);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
-    nav ul{
-      display:flex;
-      list-style:none;
-      gap:25px;
-      transition:all 0.3s ease;
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      transition: all 0.3s ease;
     }
-    nav ul li a{
-      text-decoration:none;
-      color:#333;
-      font-weight:500;
-      padding:8px 14px;
-      border-radius:6px;
-      transition:0.3s;
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: 0.3s;
+      font-size: 15px;
     }
+
     nav ul li a:hover,
-    nav ul li a.active{
-      background:#179fde;
-      color:#fff;
+    nav ul li a.active {
+      background: #179fde;
+      color: #fff;
     }
-    .menu-toggle{
-      display:none;
-      font-size:28px;
-      cursor:pointer;
-      color:#179fde;
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #179fde;
     }
-    .hero{
-      background:url('https://images.unsplash.com/photo-1551218808-94e220e084d2') center/cover no-repeat;
-      height:65vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:#fff;
-      position:relative;
+
+    /* Hero Section */
+    .hero {
+      background: url('https://media.istockphoto.com/id/1829241109/photo/enjoying-a-brunch-together.jpg?s=612x612&w=0&k=20&c=9awLLRMBLeiYsrXrkgzkoscVU_3RoVwl_HA-OT-srjQ=') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
     }
-    .hero::after{
-      content:"";
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.55);
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
     }
-    .hero-content{
-      position:relative;
-      z-index:1;
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
     }
-    .hero-content h1{
-      font-size:48px;
-      letter-spacing:1px;
-      font-weight:800;
+
+    .hero-content h1 {
+      font-size: 48px;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: fadeIn 1.5s ease-in-out;
     }
-    .hero-content p{
-      margin-top:12px;
-      font-size:18px;
-      color:#f1f1f1;
+
+    .hero-content p {
+      font-size: 22px;
+      color: #f1f1f1;
+      animation: fadeIn 2s ease-in-out;
     }
-    .categories{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:35px;
-      padding:60px 40px;
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .card{
-      background:#fff;
-      border-radius:15px;
-      box-shadow:0 5px 15px rgba(0,0,0,0.1);
-      overflow:hidden;
-      transition:all 0.3s ease;
-      cursor:pointer;
-      position:relative;
+
+    /* Categories Grid */
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 60px 8%;
     }
-    .card:hover{
-      transform:translateY(-10px);
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      border: 1px solid #eee;
     }
-    .card img{
-      width:100%;
-      height:180px;
-      object-fit:cover;
-      transition:0.4s ease;
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
-    .card:hover img{
-      filter:brightness(0.85);
-      transform:scale(1.05);
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: 0.4s ease;
     }
-    .card h3{
-      text-align:center;
-      padding:15px;
-      font-size:20px;
-      color:#b22222;
-      background:#fff;
+
+    .card:hover img {
+      filter: brightness(0.85);
+      transform: scale(1.05);
     }
-    footer{
-      background:#012033;
-      color:#fff;
-      text-align:center;
-      padding:25px;
-      font-size:14px;
-      margin-top:40px;
+
+    .card h3 {
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+      color: #333;
+      background: #fff;
+      font-weight: 600;
     }
-    @media(max-width:768px){
-      .menu-toggle{display:block;}
-      nav ul{
-        position:fixed;
-        top:65px;
-        left:-100%;
-        flex-direction:column;
-        background:#fff;
-        width:100%;
-        height:100vh;
-        text-align:center;
-        transition:all 0.3s ease;
-        padding-top:20px;
+
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: #bbb;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      margin-top: 40px;
+      border-top: 1px solid #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .menu-toggle { display: block; }
+      nav ul {
+        position: fixed;
+        top: 65px;
+        left: -100%;
+        flex-direction: column;
+        background: #fff;
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        padding-top: 30px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
       }
-      nav ul.active{
-        left:0;
-      }
-      nav ul li{
-        border-bottom:1px solid #ddd;
-      }
-      nav ul li a{
-        display:block;
-        padding:18px;
-        font-size:18px;
-      }
-      .hero-content h1{
-        font-size:34px;
-      }
+      nav ul.active { left: 0; }
+      nav ul li { margin: 15px 0; }
+      .hero-content h1 { font-size: 32px; }
+      .hero-content p { font-size: 16px; }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
@@ -174,6 +205,8 @@
       <li><a href="About.html">About</a></li>
       <li><a href="category.html" class="active">Category</a></li>
       <li><a href="menu.html">Menu</a></li>
+      <li><a href="cart.html" style="color: #ff6347;">Cart 🛒</a></li>
+      <li><a href="myorders.html">My Orders</a></li>
       <li><a href="signup.html">SignUp</a></li>
       <li><a href="c.html">Contact</a></li>
     </ul>
@@ -181,62 +214,74 @@
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Explore Our Food Categories</h1>
-      <p>From classic Indian dishes to fast food, desserts, and more!</p>
+      <h1>Our Delicious Categories</h1>
+      <p>Choose a category to explore our exclusive menu.</p>
     </div>
   </section>
 
   <section class="categories">
-    <div class="card">
-      <img src="https://images.squarespace-cdn.com/content/v1/612d4825ee7c3b7ba3e215b7/1667458982443-N6XGU1PU7335QEMVUP7M/Delicious+food.png">
+    
+    <div class="card" onclick="location.href='menu.html?cat=Indian Food'">
+      <img src="https://images.squarespace-cdn.com/content/v1/612d4825ee7c3b7ba3e215b7/1667458982443-N6XGU1PU7335QEMVUP7M/Delicious+food.png" alt="Indian">
       <h3>Indian Food</h3>
     </div>
-    <div class="card">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxfTyKiKOaifAdMwtibhG3I4czAMK8YQOMJg&s">
+
+    <div class="card" onclick="location.href='menu.html?cat=Fast Food'">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxfTyKiKOaifAdMwtibhG3I4czAMK8YQOMJg&s" alt="Fast Food">
       <h3>Fast Food</h3>
     </div>
-    <div class="card">
-      <img src="https://womenchefs.org/wp-content/uploads/2023/05/8-Amazing-Ina-Garten-Dessert-Recipes-To-Try-Today-800x530.jpg">
+
+    <div class="card" onclick="location.href='menu.html?cat=Desserts'">
+      <img src="https://womenchefs.org/wp-content/uploads/2023/05/8-Amazing-Ina-Garten-Dessert-Recipes-To-Try-Today-800x530.jpg" alt="Desserts">
       <h3>Desserts</h3>
     </div>
-    <div class="card">
-      <img src="https://media.licdn.com/dms/image/v2/D5612AQEWaDWX3p8iDQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1675067694467?e=2147483647&v=beta&t=RXK1sz0QxKsECifOPd-o1vUa1MKrA96HKAHSDSHot0I">
+
+    <div class="card" onclick="location.href='menu.html?cat=Beverages'">
+      <img src="https://media.licdn.com/dms/image/v2/D5612AQEWaDWX3p8iDQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1675067694467?e=2147483647&v=beta&t=RXK1sz0QxKsECifOPd-o1vUa1MKrA96HKAHSDSHot0I" alt="Beverages">
       <h3>Beverages</h3>
     </div>
-    <div class="card">
-      <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Beef-with-Ramen-Noodles_EXPS_FT21_22747_F_1116_1.jpg">
+
+    <div class="card" onclick="location.href='menu.html?cat=Quick %26 Easy Meals'">
+      <img src="https://www.tasteofhome.com/wp-content/uploads/2018/01/Beef-with-Ramen-Noodles_EXPS_FT21_22747_F_1116_1.jpg" alt="Quick Meals">
       <h3>Quick & Easy Meals</h3>
     </div>
-    <div class="card">
-      <img src="https://shriandsam.com/cdn/shop/articles/Untitled_design_116.png?v=1630749158&width=2240">
+
+    <div class="card" onclick="location.href='menu.html?cat=Healthy Food'">
+      <img src="https://c.ndtvimg.com/k03tb2a_healthy-food_625x300_17_August_18.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886" alt="Healthy">
       <h3>Healthy Food</h3>
     </div>
-    <div class="card">
-      <img src="https://www.traveltrademaldives.com/assets/2024/04/TTMMVT-Feature-Photo-2024-04-21T153222.482-672x428.jpg">
+
+    <div class="card" onclick="location.href='menu.html?cat=Breakfast Delights'">
+      <img src="https://www.traveltrademaldives.com/assets/2024/04/TTMMVT-Feature-Photo-2024-04-21T153222.482-672x428.jpg" alt="Breakfast">
       <h3>Breakfast Delights</h3>
     </div>
-    <div class="card">
-      <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2019_05/2736521/190131-stock-taco-bar-food-ew-1220p.jpg">
+
+    <div class="card" onclick="location.href='menu.html?cat=Dinner'">
+      <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1500w,f_auto,q_auto:best/newscms/2019_05/2736521/190131-stock-taco-bar-food-ew-1220p.jpg" alt="Dinner">
       <h3>Dinner</h3>
     </div>
-    <div class="card">
-      <img src="https://blog.kulikulifoods.com/wp-content/uploads/2017/08/smoothies-2253423_128099-3-1078x660.jpg">
+
+    <div class="card" onclick="location.href='menu.html?cat=Smoothies %26 Juices'">
+      <img src="https://blog.kulikulifoods.com/wp-content/uploads/2017/08/smoothies-2253423_128099-3-1078x660.jpg" alt="Smoothies">
       <h3>Smoothies & Juices</h3>
     </div>
-    <div class="card">
-      <img src="https://i.ytimg.com/vi/FT5kLcUrFTc/hq720.jpg">
+
+    <div class="card" onclick="location.href='menu.html?cat=Non-Veg'">
+      <img src="https://i.ytimg.com/vi/FT5kLcUrFTc/hq720.jpg" alt="Non-Veg">
       <h3>Non-Veg</h3>
     </div>
+
   </section>
 
-  <footer>© 2025 RS Restaurant | All Rights Reserved</footer>
+  <footer>
+    <p>© 2025 RS Restaurant | All Rights Reserved</p>
+  </footer>
 
   <script>
-    function toggleMenu(){
+    function toggleMenu() {
       document.getElementById("navLinks").classList.toggle("active");
     }
   </script>
 
 </body>
 </html>
-

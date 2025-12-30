@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS Restaurant | Contact</title>
+  <title>Contact Us | RS Restaurant</title>
   <style>
     * {
       margin: 0;
@@ -13,18 +14,22 @@
     }
 
     body {
-      background-image: url("https://images.unsplash.com/photo-1552083375-1447ce886485?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmF0dXJlJTIwd2FsbHBhcGVyfGVufDB8fDB8fHww");
+      /* Background Image with dark overlay */
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?q=80&w=1920&auto=format&fit=crop");
       background-size: cover;
       background-position: center;
+      background-attachment: fixed; /* Parallax scroll effect */
+      min-height: 100vh;
     }
 
+    /* --- Navbar --- */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 30px;
-      background: transparent;
-      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95); /* Slightly transparent navbar */
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -32,24 +37,26 @@
 
     .logo {
       font-size: 26px;
-      font-weight: bold;
+      font-weight: 700;
       color: rgb(30, 214, 162);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     nav ul {
       display: flex;
       list-style: none;
-      gap: 25px;
-      transition: all 0.3s ease;
+      gap: 20px;
     }
 
     nav ul li a {
       text-decoration: none;
       color: #333;
       font-weight: 500;
-      transition: 0.3s;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 5px;
+      transition: 0.3s;
+      font-size: 15px;
     }
 
     nav ul li a:hover,
@@ -65,90 +72,167 @@
       color: #179fde;
     }
 
-    .container {
-      min-height: 90vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
+    /* --- Main Title --- */
+    .main-title {
+        text-align: center;
+        color: white;
+        font-size: 42px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        font-weight: 700;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
 
-    .box1 {
-      width: 400px;
-      background: transparent;
-      border-radius: 10px;
-      box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-      padding: 25px;
+    /* --- Contact Container --- */
+    .contact-container {
+      max-width: 1100px;
+      margin: 0 auto 50px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two Columns */
+      gap: 40px;
     }
 
-    .box1 h3 {
-      text-align: center;
+    /* Common style for Info and Form boxes (Glassmorphism) */
+    .contact-info, .contact-form {
+      background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+      backdrop-filter: blur(10px); /* Blur effect behind the box */
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    /* Left Side: Info */
+    .contact-info {
+      border-top: 5px solid rgb(30, 214, 162);
+    }
+
+    .contact-info h3 {
       font-size: 28px;
-      text-decoration: underline;
-      text-decoration-color: green;
       margin-bottom: 20px;
-      color: #000;
+      color: #333;
     }
 
-    .box1 input, .box1 textarea {
+    .info-box {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+    }
+
+    .icon {
+      font-size: 24px;
+      color: rgb(30, 214, 162);
+      margin-top: 5px;
+      background: rgba(30, 214, 162, 0.1);
+      padding: 10px;
+      border-radius: 50%;
+    }
+
+    .info-text h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      color: #444;
+      font-weight: 600;
+    }
+
+    .info-text p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* Right Side: Form */
+    .contact-form h3 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
       width: 100%;
       padding: 12px;
-      margin-bottom: 12px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-size: 14px;
+      border: 2px solid #eee;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+      background: #fff;
     }
 
-    .box1 textarea {
-      resize: vertical;
-      min-height: 100px;
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: rgb(30, 214, 162);
+      box-shadow: 0 0 8px rgba(30, 214, 162, 0.2);
     }
 
-    .box1 button {
+    .btn-send {
       width: 100%;
-      padding: 12px;
+      padding: 14px;
+      background: rgb(30, 214, 162);
+      color: #fff;
       border: none;
-      background: #79cfe0;
-      color: #000;
+      border-radius: 8px;
       font-size: 16px;
-      border-radius: 5px;
+      font-weight: 600;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(30, 214, 162, 0.3);
     }
 
-    .box1 button:hover {
-      background: #10b06d;
-      color: #fff;
+    .btn-send:hover {
+      background: #179fde;
+      transform: translateY(-2px);
     }
 
+    /* Footer */
+    .footer {
+      font-size: 15px;
+      text-align: center;
+      padding: 25px;
+      background: #1a1a1a;
+      color: #bbb;
+      border-top: 1px solid #333;
+      margin-top: 50px;
+    }
+
+    /* Responsive */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+      .contact-container {
+        grid-template-columns: 1fr; /* Stack on mobile */
+        gap: 30px;
       }
+      .main-title { font-size: 32px; margin-top: 30px; }
+
       nav ul {
-        position: absolute;
-        top: 70px;
-        left: -100%;
-        flex-direction: column;
-        background: white;
-        width: 100%;
-        text-align: center;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 70px; left: -100%; width: 100%; height: 100vh;
+        background: #fff; flex-direction: column; text-align: center;
+        padding-top: 20px; transition: 0.3s;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
       }
-      nav ul.active {
-        left: 0;
-      }
-      nav ul li {
-        border-bottom: 1px solid #ddd;
-      }
-      nav ul li a {
-        display: block;
-        padding: 15px;
-      }
+      nav ul.active { left: 0; }
+      nav ul li { margin: 15px 0; }
+      .menu-toggle { display: block; }
     }
   </style>
 </head>
+
 <body>
+
   <nav>
     <div class="logo">RS Restaurant</div>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -157,28 +241,110 @@
       <li><a href="About.html">About</a></li>
       <li><a href="category.html">Category</a></li>
       <li><a href="menu.html">Menu</a></li>
+      <li><a href="cart.html" style="color: #ff6347;">Cart 🛒</a></li>
+      <li><a href="myorders.html">My Orders</a></li>
+      <li><a href="myaccount.html">My Account</a></li>
       <li><a href="signup.html">SignUp</a></li>
       <li><a href="c.html" class="active">Contact</a></li>
     </ul>
   </nav>
 
-  <div class="container">
-    <div class="box1">
-      <h3>Contact Us</h3>
-      <input type="text" placeholder="Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="text" placeholder="Phone Number" required>
-      <textarea placeholder="Apna message yaha likhe" required></textarea>
-      <button type="submit">Submit</button>
+  <h1 class="main-title">CONTACT US</h1>
+
+  <div class="contact-container">
+    
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      <p style="margin-bottom: 25px; color: #666;">Have a question or want to book a table? Feel free to contact us. We are always ready to serve you.</p>
+      
+      <div class="info-box">
+        <div class="icon">📍</div>
+        <div class="info-text">
+          <h4>Address</h4>
+          <p>RS Restaurant, Boring Road,<br>Patna, Bihar, India</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="icon">📞</div>
+        <div class="info-text">
+          <h4>Phone</h4>
+          <p>+91 9693814964</p>
+          <p>+91 1234567890</p>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <div class="icon">✉️</div>
+        <div class="info-text">
+          <h4>Email</h4>
+          <p>support@rsrestaurant.com</p>
+        </div>
+      </div>
+      
+      <div class="info-box">
+        <div class="icon">🕒</div>
+        <div class="info-text">
+          <h4>Opening Hours</h4>
+          <p>Mon - Sun: 10:00 AM - 10:00 PM</p>
+        </div>
+      </div>
     </div>
+
+    <div class="contact-form">
+      <h3>Send a Message ✍️</h3>
+      <form onsubmit="sendMessage(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" placeholder="Enter phone number">
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="msg" rows="4" placeholder="How can we help you?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-send">Send Message 🚀</button>
+      </form>
+    </div>
+
   </div>
 
+  <footer>
+    <div class="footer">
+      <p>&copy; 2025 RS Restaurant | All Rights Reserved | Designed with ❤ by Rupesh Kumar</p>
+    </div>
+  </footer>
+
   <script>
+    // Navbar Toggle
     function toggleMenu() {
       const navLinks = document.getElementById('navLinks');
       navLinks.classList.toggle('active');
     }
+
+    // Message Logic
+    function sendMessage(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value;
+      
+      if(name) {
+        alert("Thank You " + name + "! Your message has been sent successfully. We will contact you soon.");
+        // Form Reset
+        document.querySelector("form").reset();
+      }
+    }
   </script>
+
 </body>
 </html>
-

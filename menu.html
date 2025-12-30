@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS Restaurant | Menu</title>
+  <title>RS Restaurant | Full Menu</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
+      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background-color: #f9f9f9;
+      background-color: #fffaf3;
     }
 
-    /* Navbar */
+    /* --- Navbar (Complete & Consistent) --- */
     nav {
       display: flex;
       justify-content: space-between;
@@ -33,13 +34,14 @@
       font-size: 26px;
       font-weight: bold;
       color: rgb(30, 214, 162);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     nav ul {
       display: flex;
       list-style: none;
-      gap: 25px;
-      transition: all 0.4s ease;
+      gap: 20px;
     }
 
     nav ul li a {
@@ -47,9 +49,9 @@
       color: #333;
       font-weight: 500;
       transition: 0.3s;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 5px;
-      display: block;
+      font-size: 14px;
     }
 
     nav ul li a:hover,
@@ -65,363 +67,368 @@
       color: #179fde;
     }
 
-    /* Hero Section */
-    .hero {
-      background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover no-repeat;
-      color: white;
+    /* --- Filter Buttons Section --- */
+    .filter-container {
+      padding: 20px;
       text-align: center;
-      padding: 120px 20px;
-      position: relative;
+      overflow-x: auto;
+      /* Mobile scroll */
+      white-space: nowrap;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 70px;
+      /* Below Navbar */
+      z-index: 900;
     }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      z-index: 0;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-content h1 {
-      font-size: 50px;
-      font-weight: 900;
-      letter-spacing: 1px;
-    }
-
-    .hero-content p {
-      font-size: 18px;
-      margin: 15px 0;
-      color: #f0f0f0;
-    }
-
-    .hero-content button {
-      background: #ff6347;
-      border: none;
-      padding: 12px 30px;
+    .filter-btn {
+      display: inline-block;
+      padding: 8px 20px;
+      margin: 5px;
+      background: #fff;
+      border: 2px solid rgb(30, 214, 162);
+      color: rgb(30, 214, 162);
       border-radius: 25px;
-      color: white;
-      font-size: 16px;
       cursor: pointer;
+      font-weight: 600;
       transition: 0.3s;
     }
 
-    .hero-content button:hover {
-      background: #2e8b57;
+    .filter-btn:hover,
+    .filter-btn.active-filter {
+      background: rgb(30, 214, 162);
+      color: white;
     }
 
-    /* Menu Section */
-    .menu-section {
-      text-align: center;
-      margin: 60px 0 30px;
-    }
-
-    .menu-section h2 {
-      font-size: 35px;
-      color: #b22222;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .menu-section p {
-      color: #555;
-      font-size: 16px;
-    }
-
-    .container {
+    /* --- Menu Grid --- */
+    .menu-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      padding: 40px 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
     }
 
-    .box1 {
-      background: #fff;
+    /* --- Food Card --- */
+    .food-card {
+      background: white;
       border-radius: 15px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s;
+      border: 1px solid #eee;
+      display: flex;
+      flex-direction: column;
     }
 
-    .box1:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    .food-card:hover {
+      transform: translateY(-5px);
     }
 
-    .box1 img {
+    .food-card img {
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
 
-    .info {
+    .card-content {
       padding: 15px;
-      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .info h3 {
-      color: #b22222;
-      margin-bottom: 8px;
-      font-size: 20px;
+    .category-tag {
+      font-size: 12px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .info p {
-      color: #555;
-      font-size: 14px;
-      margin-bottom: 10px;
+    .food-title {
+      font-size: 18px;
+      color: #333;
+      margin: 5px 0;
+    }
+
+    .food-desc {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
     }
 
     .price {
+      font-size: 18px;
       font-weight: bold;
       color: #2e8b57;
-      font-size: 18px;
-      margin-bottom: 12px;
     }
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .bt {
+    .add-btn {
       background: #ff6347;
       color: white;
       border: none;
-      padding: 8px 14px;
+      padding: 8px 15px;
       border-radius: 20px;
-      font-size: 14px;
       cursor: pointer;
-      transition: 0.3s;
+      font-size: 13px;
+      transition: 0.2s;
     }
 
-    .bt:hover {
-      background: #2e8b57;
+    .add-btn:hover {
+      background: #e5533d;
     }
 
+    /* --- Footer --- */
     footer {
-      background: #012033;
-      color: white;
+      background: #1a1a1a;
+      color: #bbb;
       text-align: center;
       padding: 25px;
-      font-size: 14px;
-      margin-top: 40px;
+      margin-top: 50px;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
+    /* --- Responsive --- */
+    @media (max-width: 900px) {
       .menu-toggle {
         display: block;
       }
+
       nav ul {
-        position: fixed;
-        top: 65px;
-        left: -100%;
+        display: none;
         flex-direction: column;
-        background: white;
         width: 100%;
-        height: 100vh;
-        text-align: center;
-        gap: 0;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-      nav ul.active {
+        position: absolute;
+        top: 60px;
         left: 0;
-      }
-      nav ul li {
-        border-bottom: 1px solid #ddd;
-      }
-      nav ul li a {
-        padding: 18px;
-        font-size: 18px;
+        background: white;
+        text-align: center;
+        padding: 20px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
       }
 
-      .hero-content h1 {
-        font-size: 34px;
+      nav ul.show {
+        display: flex;
       }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
     <div class="logo">RS Restaurant</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <ul id="navLinks">
+    <div class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('show')">☰</div>
+    <ul id="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="About.html">About</a></li>
       <li><a href="category.html">Category</a></li>
       <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="cart.html" style="color: #ff6347;">Cart 🛒</a></li>
+      <li><a href="myorders.html">My Orders</a></li>
       <li><a href="signup.html">SignUp</a></li>
       <li><a href="c.html">Contact</a></li>
     </ul>
   </nav>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Delicious Meals, Just for You!</h1>
-      <p>Discover your favorite dishes freshly prepared by our chefs.</p>
-      <button>Order Now</button>
-    </div>
-  </section>
+  <div class="filter-container">
+    <button class="filter-btn active-filter" onclick="filterMenu('all')">All</button>
+    <button class="filter-btn" onclick="filterMenu('Indian Food')">Indian</button>
+    <button class="filter-btn" onclick="filterMenu('Fast Food')">Fast Food</button>
+    <button class="filter-btn" onclick="filterMenu('Desserts')">Desserts</button>
+    <button class="filter-btn" onclick="filterMenu('Beverages')">Beverages</button>
+    <button class="filter-btn" onclick="filterMenu('Non-Veg')">Non-Veg</button>
+    <button class="filter-btn" onclick="filterMenu('Healthy Food')">Healthy</button>
+    <button class="filter-btn" onclick="filterMenu('Quick & Easy Meals')">Quick Bites</button>
+    <button class="filter-btn" onclick="filterMenu('Breakfast Delights')">Breakfast</button>
+    <button class="filter-btn" onclick="filterMenu('Dinner')">Dinner</button>
+    <button class="filter-btn" onclick="filterMenu('Smoothies & Juices')">Smoothies</button>
+  </div>
 
-  <section class="menu-section">
-    <h2>Our Specialy Menu</h2>
-    <p>Handpicked dishes made with love and fresh ingredients.</p>
-  </section>
-
-  <div class="container">
-
-       <div class="box1">
-      <img src="https://assets.gqindia.com/photos/6213cbed18140d747a9b0a6e/16:9/w_1920,h_1080,c_limit/new%20restaurant%20menus%20in%20Mumbai.jpg">
-      <div class="info">
-        <h3>Chowmein</h3>
-        <p>Street-style stir-fried noodles tossed with veggies and sauces.</p>
-        <div class="price">₹120</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-    
-    <div class="box1">
-      <img src="https://restaurantindia.s3.ap-south-1.amazonaws.com/s3fs-public/content9555.jpg">
-      <div class="info">
-        <h3>Sandwich</h3>
-        <p>Fresh bread stuffed with veggies, cheese, and creamy mayo.</p>
-        <div class="price">₹90</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://b.zmtcdn.com/data/dish_photos/670/a0528d2356ff13c7ffe90e5f94c5b670.jpg">
-      <div class="info">
-        <h3>Fried Rice</h3>
-        <p>Fluffy rice stir-fried with veggies and soy sauce.</p>
-        <div class="price">₹130</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://img500.exportersindia.com/product_images/bc-500/2023/9/12301398/paneer-momos-1690436501-7001753.jpeg">
-      <div class="info">
-        <h3>Momos</h3>
-        <p>Steamed dumplings filled with veggies or chicken & spicy dip.</p>
-        <div class="price">₹80</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://media.istockphoto.com/id/637165584/photo/portion-of-french-fries-on-catering-platter.jpg?s=612x612&w=0&k=20&c=WRmdE5FB7hG32jH2A1L0t0c3f-ec5zZlmJWUXNU6QmM=">
-      <div class="info">
-        <h3>French Fries</h3>
-        <p>Crispy golden fries lightly salted — the perfect snack.</p>
-        <div class="price">₹70</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://b.zmtcdn.com/data/dish_photos/670/a0528d2356ff13c7ffe90e5f94c5b670.jpg">
-      <div class="info">
-        <h3>Fried Rice</h3>
-        <p>Fluffy rice stir-fried with veggies and soy sauce.</p>
-        <div class="price">₹130</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://preview.redd.it/fried-chicken-biryani-recipe-step-by-step-chicken-biryani-v0-xxwqpu8xjlxc1.jpeg?width=640&crop=smart&auto=webp&s=0f4f7bbed2bd563eba8a77c684830808efe5e1f0">
-      <div class="info">
-        <h3>Chicken Biryani</h3>
-        <p>Aromatic rice cooked with chicken and Indian spices.</p>
-        <div class="price">₹200</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://static.vecteezy.com/system/resources/thumbnails/016/285/734/small_2x/paneer-khus-khus-curry-or-cottage-cheese-posto-masala-made-using-poppy-seeds-indian-recipe-free-photo.jpg">
-      <div class="info">
-        <h3>Shahi Paneer</h3>
-        <p>Rich & creamy paneer curry in royal buttery gravy.</p>
-        <div class="price">₹180</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://www.eatingwell.com/thmb/6HYM2Tya8CJGxPo1rBAMRGDo8CY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Why-Does-Pizza-Taste-So-Much-Better-From-Restaurants-3fdcc2c1c04742209a8d5030127dae89.jpg">
-      <div class="info">
-        <h3>Pizza</h3>
-        <p>Cheesy pizza baked to perfection with fresh toppings.</p>
-        <div class="price">₹220</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="box1">
-      <img src="https://www.unileverfoodsolutions.com.au/dam/global-ufs/mcos/anz/calcmenu/recipe/killer-recipes-update/californian-egg-roll-main-header-anz.jpg">
-      <div class="info">
-        <h3>Egg Roll</h3>
-        <p>Freshly rolled, perfectly fried — taste the crunch of our egg rolls.</p>
-        <div class="price">₹70</div>
-        <div class="buttons">
-          <button class="bt">Order Now</button>
-          <button class="bt">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-
+  <div class="menu-container" id="menu-grid">
   </div>
 
   <footer>
-    © 2025 RS Restaurant | All Rights Reserved
+    <p>© 2025 RS Restaurant | All Rights Reserved</p>
   </footer>
 
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.classList.toggle("active");
+    // --- 1. HUGE DATABASE (With FAST Loading Optimized Images) ---
+    const menuItems = [
+      // Indian Food
+      { id: 1, name: "Paneer Butter Masala", category: "Indian Food", price: 220, img: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=400&q=80", desc: "Creamy tomato gravy with soft paneer cubes." },
+      { id: 2, name: "Dal Makhani", category: "Indian Food", price: 180, img: "https://images.unsplash.com/photo-1585937421612-70a008356f36?auto=format&fit=crop&w=400&q=80", desc: "Slow cooked black lentils with butter." },
+      { id: 3, name: "Chole Bhature", category: "Indian Food", price: 150, img: "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=400&q=80", desc: "Spicy chickpeas with fried bread." },
+      { id: 4, name: "Masala Dosa", category: "Indian Food", price: 120, img: "https://images.unsplash.com/photo-1589301760014-d92964563638?auto=format&fit=crop&w=400&q=80", desc: "Crispy crepe filled with potato masala." },
+      { id: 5, name: "Veg Biryani", category: "Indian Food", price: 200, img: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400&q=80", desc: "Aromatic rice cooked with veggies and spices." },
+
+      // Fast Food
+      { id: 6, name: "Cheese Burger", category: "Fast Food", price: 110, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80", desc: "Juicy patty with melted cheese and fresh veggies." },
+      { id: 7, name: "Margherita Pizza", category: "Fast Food", price: 210, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=400&q=80", desc: "Classic cheese pizza with basil." },
+      { id: 8, name: "French Fries", category: "Fast Food", price: 80, img: "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=400&q=80", desc: "Golden crispy salted fries." },
+      { id: 9, name: "Red Sauce Pasta", category: "Fast Food", price: 160, img: "https://images.unsplash.com/photo-1626844131082-256783844137?auto=format&fit=crop&w=400&q=80", desc: "Penne pasta in spicy tomato sauce." },
+      { id: 10, name: "Veg Wrap", category: "Fast Food", price: 100, img: "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=400&q=80", desc: "Grilled veggies wrapped in tortilla." },
+
+      // Desserts
+      { id: 11, name: "Gulab Jamun", category: "Desserts", price: 60, img: "https://images.unsplash.com/photo-1589119908995-c6837fa14848?auto=format&fit=crop&w=400&q=80", desc: "Sweet fried balls in rose syrup." },
+      { id: 12, name: "Choco Brownie", category: "Desserts", price: 140, img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476d?auto=format&fit=crop&w=400&q=80", desc: "Warm brownie with fudge sauce." },
+      { id: 13, name: "Rasmalai", category: "Desserts", price: 100, img: "https://images.unsplash.com/photo-1618486948065-27a421b58530?auto=format&fit=crop&w=400&q=80", desc: "Soft cheese patties in sweet milk." },
+      { id: 14, name: "Ice Cream Scoop", category: "Desserts", price: 80, img: "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=400&q=80", desc: "Choice of Vanilla, Chocolate, or Strawberry." },
+      { id: 15, name: "Gajar Halwa", category: "Desserts", price: 120, img: "https://images.unsplash.com/photo-1634554471618-b2d9d968b577?auto=format&fit=crop&w=400&q=80", desc: "Winter special carrot pudding." },
+
+      // Beverages
+      { id: 16, name: "Masala Chai", category: "Beverages", price: 30, img: "https://images.unsplash.com/photo-1619859247345-c1e148a07c31?auto=format&fit=crop&w=400&q=80", desc: "Hot spiced Indian tea." },
+      { id: 17, name: "Cold Coffee", category: "Beverages", price: 90, img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=400&q=80", desc: "Chilled coffee blended with ice cream." },
+      { id: 18, name: "Sweet Lassi", category: "Beverages", price: 60, img: "https://images.unsplash.com/photo-1599580434444-c2c31c890f6b?auto=format&fit=crop&w=400&q=80", desc: "Thick yogurt drink." },
+      { id: 19, name: "Fresh Lime Soda", category: "Beverages", price: 50, img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=400&q=80", desc: "Refreshing lemon drink." },
+      { id: 20, name: "Coke / Pepsi", category: "Beverages", price: 40, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?auto=format&fit=crop&w=400&q=80", desc: "Chilled soft drink (500ml)." },
+
+      // Non-Veg
+      { id: 21, name: "Chicken Curry", category: "Non-Veg", price: 250, img: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=400&q=80", desc: "Spicy chicken in onion gravy." },
+      { id: 22, name: "Chicken Tikka", category: "Non-Veg", price: 280, img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400&q=80", desc: "Grilled marinated chicken chunks." },
+      { id: 23, name: "Mutton Rogan Josh", category: "Non-Veg", price: 350, img: "https://images.unsplash.com/photo-1585937421612-70a008356f36?auto=format&fit=crop&w=400&q=80", desc: "Kashmiri style lamb curry." },
+      { id: 24, name: "Egg Curry", category: "Non-Veg", price: 140, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=400&q=80", desc: "Boiled eggs in tomato masala." },
+      { id: 25, name: "Fish Fry", category: "Non-Veg", price: 300, img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=400&q=80", desc: "Crispy fried spiced fish." },
+
+      // Healthy Food
+      { id: 26, name: "Greek Salad", category: "Healthy Food", price: 180, img: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=400&q=80", desc: "Fresh veggies with feta cheese." },
+      { id: 27, name: "Oats Porridge", category: "Healthy Food", price: 120, img: "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=400&q=80", desc: "Healthy oats with fruits and nuts." },
+      { id: 28, name: "Grilled Paneer", category: "Healthy Food", price: 200, img: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=400&q=80", desc: "Low oil grilled cottage cheese." },
+      { id: 29, name: "Fruit Bowl", category: "Healthy Food", price: 100, img: "https://images.unsplash.com/photo-1519996529931-28324d1a6305?auto=format&fit=crop&w=400&q=80", desc: "Seasonal mix fruits." },
+      { id: 30, name: "Multigrain Roti", category: "Healthy Food", price: 30, img: "https://images.unsplash.com/photo-1632283995646-7c9c05e16543?auto=format&fit=crop&w=400&q=80", desc: "Healthy fiber-rich bread." },
+
+      // Breakfast Delights
+      { id: 31, name: "Aloo Paratha", category: "Breakfast Delights", price: 80, img: "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=400&q=80", desc: "Stuffed potato flatbread with curd." },
+      { id: 32, name: "Poha", category: "Breakfast Delights", price: 60, img: "https://images.unsplash.com/photo-1613405788574-d2e7d377b282?auto=format&fit=crop&w=400&q=80", desc: "Flattened rice with mustard seeds." },
+      { id: 33, name: "Idli Sambar", category: "Breakfast Delights", price: 70, img: "https://images.unsplash.com/photo-1589301760014-d92964563638?auto=format&fit=crop&w=400&q=80", desc: "Steamed rice cakes with lentil soup." },
+      { id: 34, name: "Omelette Toast", category: "Breakfast Delights", price: 90, img: "https://images.unsplash.com/photo-1525351462161-f2gk82d?auto=format&fit=crop&w=400&q=80", desc: "2 eggs omelette with bread slices." },
+      { id: 35, name: "Puri Bhaji", category: "Breakfast Delights", price: 100, img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80", desc: "Fried bread with potato curry." },
+
+      // Dinner
+      { id: 36, name: "Thali Special", category: "Dinner", price: 250, img: "https://images.unsplash.com/photo-1626505051642-12e09b30c52d?auto=format&fit=crop&w=400&q=80", desc: "Roti, Dal, Sabzi, Rice, Sweet." },
+      { id: 37, name: "Malai Kofta", category: "Dinner", price: 220, img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=400&q=80", desc: "Fried dumplings in rich creamy gravy." },
+      { id: 38, name: "Tandoori Roti", category: "Dinner", price: 25, img: "https://images.unsplash.com/photo-1632283995646-7c9c05e16543?auto=format&fit=crop&w=400&q=80", desc: "Clay oven roasted bread." },
+      { id: 39, name: "Mix Veg", category: "Dinner", price: 160, img: "https://images.unsplash.com/photo-1585937421612-70a008356f36?auto=format&fit=crop&w=400&q=80", desc: "Assorted vegetables cooked in spices." },
+      { id: 40, name: "Jeera Rice", category: "Dinner", price: 100, img: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=400&q=80", desc: "Cumin flavored basmati rice." },
+
+      // Smoothies & Juices
+      { id: 41, name: "Mango Smoothie", category: "Smoothies & Juices", price: 120, img: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?auto=format&fit=crop&w=400&q=80", desc: "Thick mango blend with yogurt." },
+      { id: 42, name: "Orange Juice", category: "Smoothies & Juices", price: 90, img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=400&q=80", desc: "Freshly squeezed oranges." },
+      { id: 43, name: "Berry Blast", category: "Smoothies & Juices", price: 140, img: "https://images.unsplash.com/photo-1553530666-ba11a90694f3?auto=format&fit=crop&w=400&q=80", desc: "Mixed berries smoothie." },
+      { id: 44, name: "Watermelon Juice", category: "Smoothies & Juices", price: 80, img: "https://images.unsplash.com/photo-1589733955941-5eeaf752f6dd?auto=format&fit=crop&w=400&q=80", desc: "Fresh watermelon juice with mint." },
+      { id: 45, name: "Green Detox", category: "Smoothies & Juices", price: 110, img: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=400&q=80", desc: "Spinach, cucumber and apple blend." },
+
+      // Quick & Easy Meals
+      { id: 46, name: "Maggi Masala", category: "Quick & Easy Meals", price: 50, img: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?auto=format&fit=crop&w=400&q=80", desc: "Classic masala noodles with veggies." },
+      { id: 47, name: "Bread Omelette", category: "Quick & Easy Meals", price: 60, img: "https://images.unsplash.com/photo-1525351462161-f2gk82d?auto=format&fit=crop&w=400&q=80", desc: "Quick egg sandwich." },
+      { id: 48, name: "Pao Bhaji", category: "Quick & Easy Meals", price: 120, img: "https://images.unsplash.com/photo-1606491956689-2ea28c674675?auto=format&fit=crop&w=400&q=80", desc: "Mashed vegetable curry with soft buns." },
+      { id: 49, name: "Samosa (2pcs)", category: "Quick & Easy Meals", price: 40, img: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=400&q=80", desc: "Fried pastry with potato filling." },
+      { id: 50, name: "Corn Chaat", category: "Quick & Easy Meals", price: 80, img: "https://images.unsplash.com/photo-1550950158-d0d960dff51b?auto=format&fit=crop&w=400&q=80", desc: "Spicy sweet corn salad." }
+    ];
+
+    const menuGrid = document.getElementById('menu-grid');
+
+    // --- 2. FUNCTION TO SHOW ITEMS ---
+    function renderItems(items) {
+      menuGrid.innerHTML = "";
+      if (items.length === 0) {
+        menuGrid.innerHTML = "<p style='text-align:center; width:100%;'>No items found.</p>";
+        return;
+      }
+      items.forEach(item => {
+        const card = `
+          <div class="food-card">
+            <img src="${item.img}" alt="${item.name}" loading="lazy">
+            <div class="card-content">
+              <div>
+                <span class="category-tag">${item.category}</span>
+                <h3 class="food-title">${item.name}</h3>
+                <p class="food-desc">${item.desc}</p>
+              </div>
+              <div class="card-footer">
+                <span class="price">₹${item.price}</span>
+                <button class="add-btn" onclick="addToCart('${item.name}', ${item.price}, '${item.img}')">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        `;
+        menuGrid.innerHTML += card;
+      });
+    }
+
+    // --- 3. FILTER LOGIC (Button Click) ---
+    function filterMenu(category) {
+      // Highlight Button
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active-filter'));
+
+      // Find the button clicked (approximate match logic for text)
+      buttons.forEach(btn => {
+        if (btn.innerText.includes(category) || (category === 'all' && btn.innerText === 'All')) {
+          btn.classList.add('active-filter');
+        }
+      });
+
+      if (category === 'all') {
+        renderItems(menuItems);
+      } else {
+        const filtered = menuItems.filter(item => item.category === category);
+        renderItems(filtered);
+      }
+    }
+
+    // --- 4. CHECK URL ON LOAD (The "Magic" Part) ---
+    window.onload = function() {
+      const params = new URLSearchParams(window.location.search);
+      const catParam = params.get('cat'); // e.g., ?cat=Indian Food
+
+      if (catParam) {
+        // Decode URI component allows spaces like "Indian%20Food" -> "Indian Food"
+        filterMenu(decodeURIComponent(catParam));
+      } else {
+        filterMenu('all');
+      }
+    }
+
+    // --- 5. ADD TO CART FUNCTION ---
+    function addToCart(name, price, img) {
+      let cart = JSON.parse(localStorage.getItem('rsCart')) || [];
+      let existingItem = cart.find(item => item.name === name);
+
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({
+          name: name,
+          price: price,
+          image: img,
+          qty: 1
+        });
+      }
+
+      localStorage.setItem('rsCart', JSON.stringify(cart));
+
+      // Optional: Small toast notification
+      const btn = event.target;
+      const originalText = btn.innerText;
+      btn.innerText = "Added ✔";
+      btn.style.background = "#2e8b57";
+      setTimeout(() => {
+        btn.innerText = originalText;
+        btn.style.background = "#ff6347";
+      }, 1000);
     }
   </script>
 </body>
+
 </html>
-
-

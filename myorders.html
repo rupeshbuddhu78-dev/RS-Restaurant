@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders | RS Restaurant</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Premium Dark Background */
+    body {
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1920&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    /* --- Navbar (Fixed & Modern) --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: rgba(255, 255, 255, 0.95);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 700;
+      color: rgb(30, 214, 162);
+      text-transform: uppercase;
+    }
+
+    nav ul { display: flex; list-style: none; gap: 20px; }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover, nav ul li a.active {
+      background: #179fde;
+      color: #fff;
+    }
+
+    .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: #333; }
+
+    /* --- Main Content --- */
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 36px;
+      color: rgb(30, 214, 162);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+      font-weight: 700;
+    }
+
+    /* --- Empty State Design --- */
+    .empty-msg {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 50px;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .empty-msg h3 { font-size: 24px; margin-bottom: 10px; color: #fff; }
+    .empty-msg p { color: #ccc; margin-bottom: 25px; }
+    
+    .btn-home {
+      padding: 12px 25px;
+      background: rgb(30, 214, 162);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .btn-home:hover { background: #25a985; transform: scale(1.05); }
+
+    /* --- Order Card Design --- */
+    .order-card {
+      background: rgba(255, 255, 255, 0.15); /* Glass Effect */
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .order-card:hover { transform: translateY(-5px); }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+    }
+
+    .order-id { font-size: 18px; font-weight: bold; color: #ffeb3b; }
+    .order-date { font-size: 13px; color: #ddd; margin-top: 5px; }
+
+    /* Status Badge */
+    .status {
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .status.pending { background: #ff9800; color: #fff; box-shadow: 0 0 10px #ff9800; }
+    .status.delivered { background: rgb(30, 214, 162); color: #fff; box-shadow: 0 0 10px rgb(30, 214, 162); }
+    .status.cancelled { background: #ff4d4d; color: #fff; box-shadow: 0 0 10px #ff4d4d; }
+
+    /* Items List */
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+    }
+    .item-row:last-child { border-bottom: none; }
+
+    .item-info h4 { font-size: 16px; font-weight: 500; color: #fff; margin-bottom: 4px; }
+    .item-calc { font-size: 13px; color: #bbb; } /* 2 x 150 style */
+    
+    .item-total { font-size: 16px; font-weight: bold; color: rgb(30, 214, 162); }
+
+    /* Total & Actions */
+    .order-footer {
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+      margin-top: 15px;
+      padding-top: 15px;
+      text-align: right;
+    }
+
+    .grand-total { font-size: 20px; font-weight: bold; color: #fff; }
+    
+    .btn-cancel {
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 15px;
+      width: 100%;
+      transition: 0.3s;
+    }
+    .btn-cancel:hover { background: #cc0000; box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      nav ul {
+        position: fixed; top: 60px; left: -100%; width: 100%; height: 100vh;
+        background: #fff; flex-direction: column; text-align: center;
+        padding-top: 30px; transition: 0.3s;
+      }
+      nav ul.active { left: 0; }
+      nav ul li a { color: #333; font-size: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">RS Restaurant</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="cart.html">Cart 🛒</a></li>
+      <li><a href="myorders.html" class="active">My Orders</a></li>
+      <li><a href="myaccount.html">My Account</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h2>My Order History</h2>
+    
+    <div id="orders-container"></div>
+  </div>
+
+  <script>
+    // --- 1. Navbar Toggle ---
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    // --- 2. Load Real Orders ---
+    window.onload = function() {
+      const container = document.getElementById("orders-container");
+      container.innerHTML = ""; // Clear everything initially
+
+      // Step A: Check Login
+      const currentUser = localStorage.getItem("rsUser");
+      if (!currentUser) {
+        container.innerHTML = `
+          <div class="empty-msg">
+            <h3>Login Required</h3>
+            <p>Please login to view your order history.</p>
+            <a href="loginpage.html" class="btn-home">Login Now</a>
+          </div>`;
+        return;
+      }
+      const userObj = JSON.parse(currentUser);
+
+      // Step B: Get Data from LocalStorage (NO DUMMY DATA)
+      let allOrders = JSON.parse(localStorage.getItem("rsOrderHistory")) || [];
+
+      // Step C: Filter for current user
+      const myOrders = allOrders.filter(order => order.userEmail === userObj.email);
+
+      // Step D: Show Empty Message if no orders
+      if (myOrders.length === 0) {
+        container.innerHTML = `
+          <div class="empty-msg">
+            <h3>No Orders Yet 🍽</h3>
+            <p>Looks like you haven't ordered anything. Visit our menu to satisfy your hunger!</p>
+            <a href="menu.html" class="btn-home">Order Now</a>
+          </div>`;
+        return;
+      }
+
+      // Step E: Render Orders (Reverse to show latest first)
+      myOrders.reverse().forEach(order => {
+        
+        // Generate Items HTML with Unit Price Calculation
+        let itemsHtml = "";
+        order.items.forEach(item => {
+          let unitPrice = item.price;
+          let qty = item.qty;
+          let totalItemPrice = unitPrice * qty;
+
+          itemsHtml += `
+            <div class="item-row">
+              <div class="item-info">
+                <h4>${item.name}</h4>
+                <span class="item-calc">${qty} x ₹${unitPrice}</span>
+              </div>
+              <div class="item-total">₹${totalItemPrice}</div>
+            </div>
+          `;
+        });
+
+        // Cancel Button (Only if Pending)
+        let cancelBtnHtml = "";
+        if (order.status === "Pending") {
+          cancelBtnHtml = `<button class="btn-cancel" onclick="cancelOrder('${order.id}')">Cancel Order ❌</button>`;
+        }
+
+        // Create Card HTML
+        const card = `
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <div class="order-id">Order ID: #${order.id}</div>
+                <div class="order-date">${order.date}</div>
+              </div>
+              <span class="status ${order.status.toLowerCase()}">${order.status}</span>
+            </div>
+
+            <div class="order-items">
+              ${itemsHtml}
+            </div>
+
+            <div class="order-footer">
+              <div class="grand-total">Total Amount: ₹${order.total}</div>
+              ${cancelBtnHtml}
+            </div>
+          </div>
+        `;
+
+        container.innerHTML += card;
+      });
+    };
+
+    // --- 3. Cancel Function ---
+    function cancelOrder(orderId) {
+      if(!confirm("Are you sure you want to cancel this order?")) return;
+
+      let allOrders = JSON.parse(localStorage.getItem("rsOrderHistory")) || [];
+      
+      // Find order and update status
+      const index = allOrders.findIndex(o => o.id == orderId);
+      if (index > -1) {
+        allOrders[index].status = "Cancelled";
+        localStorage.setItem("rsOrderHistory", JSON.stringify(allOrders));
+        
+        alert("Order Cancelled Successfully!");
+        location.reload(); // Refresh page to see changes
+      }
+    }
+  </script>
+
+</body>
+</html>

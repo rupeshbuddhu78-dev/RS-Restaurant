@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS Restaurant</title>
+  <title>RS Restaurant | Home</title>
   <style>
     * {
       margin: 0;
@@ -13,6 +13,12 @@
       font-family: 'Poppins', sans-serif;
     }
 
+    body {
+      background-color: #fffaf3;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+    }
+
+    /* Navbar Styling */
     nav {
       display: flex;
       justify-content: space-between;
@@ -24,18 +30,19 @@
       top: 0;
       z-index: 1000;
     }
-     
 
     .logo {
       font-size: 26px;
       font-weight: bold;
       color: rgb(30, 214, 162);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     nav ul {
       display: flex;
       list-style: none;
-      gap: 25px;
+      gap: 20px;
       transition: all 0.3s ease;
     }
 
@@ -44,8 +51,9 @@
       color: #333;
       font-weight: 500;
       transition: 0.3s;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 5px;
+      font-size: 15px;
     }
 
     nav ul li a:hover,
@@ -54,6 +62,7 @@
       color: #fff;
     }
 
+    /* Mobile Menu Toggle */
     .menu-toggle {
       display: none;
       font-size: 28px;
@@ -61,10 +70,11 @@
       color: #179fde;
     }
 
-    @media (max-width: 768px) {
+    /* Responsive Navbar */
+    @media (max-width: 900px) {
       nav ul {
         position: absolute;
-        top: 65px;
+        top: 70px;
         left: -100%;
         width: 100%;
         flex-direction: column;
@@ -72,7 +82,12 @@
         padding: 20px 0;
         text-align: center;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        transition: all 0.4s ease;
+        gap: 0;
+      }
+
+      nav ul li {
+        margin: 10px 0;
       }
 
       nav ul.show {
@@ -84,12 +99,13 @@
       }
     }
 
+    /* Hero Section */
     .box2 {
       text-align: center;
       background-image: url("https://images.unsplash.com/photo-1505935428862-770b6f24f629?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmVzdGF1cmFudCUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D");
       background-size: cover;
       background-position: center;
-      padding: 90px 20px;
+      padding: 120px 20px;
       color: #fff;
       position: relative;
     }
@@ -101,7 +117,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       z-index: 0;
     }
 
@@ -113,13 +129,22 @@
     }
 
     .box2 h1 {
-      font-size: 45px;
-      margin-bottom: 10px;
+      font-size: 50px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      animation: fadeIn 1.5s ease-in-out;
     }
 
     .box2 p {
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 22px;
+      margin-bottom: 25px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .btn {
@@ -132,20 +157,22 @@
       text-decoration: none;
       display: inline-block;
       transition: 0.3s;
+      border: 2px solid transparent;
     }
 
     .btn:hover {
-      background: #378bdf;
-      transform: scale(1.05);
+      background: transparent;
+      border: 2px solid rgb(30, 214, 162);
+      color: rgb(30, 214, 162);
     }
 
+    /* About Section */
     .container {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 40px;
+      gap: 50px;
       padding: 80px 10%;
-      background: #fffaf3;
       flex-wrap: wrap;
     }
 
@@ -154,16 +181,17 @@
     }
 
     .hero h1 {
-      font-size: 32px;
-      margin-bottom: 10px;
+      font-size: 36px;
+      margin-bottom: 15px;
       color: #333;
     }
 
     .hero p {
-      font-size: 17px;
+      font-size: 16px;
       color: #555;
-      line-height: 1.7;
-      margin-bottom: 16px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+      text-align: justify;
     }
 
     .im {
@@ -173,192 +201,225 @@
     .im img {
       width: 100%;
       border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s;
+    }
+    
+    .im img:hover {
+      transform: scale(1.02);
     }
 
+    /* Special Dishes */
     h1.section-title {
-      color: red;
-      font-size: 40px;
+      color: #d35400;
+      font-size: 38px;
       text-align: center;
-      margin-top: 40px;
+      margin-top: 50px;
+      font-weight: 700;
     }
 
     .special {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-      margin: 30px 8%;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin: 40px 8%;
     }
 
     .sepical1 {
       background: #fff;
       border-radius: 15px;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
       transition: 0.3s;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .sepical1:hover {
-      transform: translateY(-8px) scale(1.03);
-      box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.15);
+      transform: translateY(-10px);
+      box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.2);
     }
 
     .sepical1 img {
       width: 100%;
-      height: 200px;
+      height: 220px;
       object-fit: cover;
     }
 
-    .sepical1 h4,
+    .sepical1 h4 {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 15px;
+      color: #333;
+    }
+
     .sepical1 p {
       text-align: center;
-      padding: 8px 10px;
+      color: #666;
+      font-size: 14px;
+      padding: 5px 15px;
     }
 
     .sepical1 p.price {
-      color: red;
+      color: #2e8b57;
       font-size: 22px;
       font-weight: bold;
+      padding-bottom: 15px;
     }
 
+    /* Reviews Section */
     .reviews-section {
-      background: #fffaf3;
+      background: #fff;
       padding: 60px 8%;
       text-align: center;
+      margin-top: 50px;
     }
 
     .headrev h3 {
       color: #d35400;
-      font-size: 45px;
-      margin-bottom: 40px;
+      font-size: 40px;
+      margin-bottom: 50px;
     }
 
     .container2 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
     }
 
     .review {
-      background-color: #ffffff;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       border-radius: 15px;
-      padding: 25px;
+      padding: 30px;
       transition: 0.3s;
+      border: 1px solid #eee;
     }
 
     .review:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
+      border-color: rgb(30, 214, 162);
     }
 
     .review img {
-      width: 120px;
-      height: 120px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 10px;
-    }
-
-    .review p {
-      font-size: 16px;
-      color: #444;
-      margin: 10px 0;
-    }
-
-    .review h4 {
-      font-size: 18px;
-      color: #333;
-      margin-top: 10px;
+      margin-bottom: 15px;
+      border: 3px solid white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .stars {
       color: #f39c12;
-      font-size: 22px;
-      margin-bottom: 8px;
+      font-size: 20px;
+      margin-bottom: 10px;
     }
 
+    .review p {
+      font-style: italic;
+      color: #555;
+    }
+
+    .review h4 {
+      margin-top: 15px;
+      color: #333;
+      font-weight: 700;
+    }
+
+    /* Contact Section */
     .contact {
       text-align: center;
       background: #212727;
       color: white;
-      padding: 60px 20px;
+      padding: 70px 20px;
     }
 
     .contact h1 {
-      color: red;
-      font-size: 36px;
-      margin-bottom: 20px;
+      color: rgb(30, 214, 162);
+      font-size: 40px;
+      margin-bottom: 40px;
     }
 
     .div1 {
       display: inline-block;
-      width: 280px;
-      font-size: 18px;
-      margin: 20px 15px;
+      width: 300px;
+      margin: 20px;
+      vertical-align: top;
     }
 
+    .div1 h4 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #ddd;
+    }
+
+    /* Footer */
     .footer {
-      font-size: 16px;
+      font-size: 15px;
       text-align: center;
-      padding: 20px;
-      background: #dd8888;
-      color: white;
+      padding: 25px;
+      background: #1a1a1a;
+      color: #bbb;
+      border-top: 1px solid #333;
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <div class="logo">RS Restaurant</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <ul id="nav-links">
-        <li><a href="#" class="active">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="category.html">Category</a></li>
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="signup.html">SignUp</a></li>
-        <li><a href="c.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+
+  <nav>
+    <div class="logo">RS Restaurant</div>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <ul id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="About.html">About</a></li>
+      <li><a href="category.html">Category</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="cart.html" style="color: #ff6347;">Cart 🛒</a></li>
+      <li><a href="myorders.html">My Orders</a></li>
+      <li><a href="myaccount.html">My Account</a></li>
+      <li><a href="signup.html">SignUp</a></li>
+      <li><a href="c.html">Contact</a></li>
+    </ul>
+  </nav>
 
   <section class="box2">
     <h1>EAT RIGHT FOOD</h1>
     <p>Eat healthy, it is good for your health.</p>
-    <a href="menu.html" class="btn">Menu</a>
+    <a href="menu.html" class="btn">Order Now</a>
   </section>
 
   <section class="container">
     <div class="hero">
-      <p>About Us</p>
+      <p style="color: rgb(30, 214, 162); font-weight: bold; letter-spacing: 1px;">ABOUT US</p>
       <h1>We've been making healthy food for 10 years</h1>
       <p>RS Restaurant ki shuruaat ek chhote se sapne se hui — “har kisi ko sasta, swadisht aur swachh khana mile.” Aaj hum local ingredients aur traditional recipes ko modern touch ke saath serve karte hain.</p>
       <p>Har dish humare chef ke junoon aur pyar se taiyaar hoti hai. Humara vaada hai — saaf, surakshit aur lazeez khana, jisse aapka har bite yaadgar ban jaaye.</p>
       <p>Ghar jaisa swad, modern ambience aur friendly service — yahi hai <strong>RS Restaurant</strong> ka asli flavour.</p>
     </div>
     <div class="im">
-      <img src="https://res.cloudinary.com/spothopper/image/fetch/f_auto,q_auto:best,c_fit,h_1200/http://static.spotapps.co/spots/47/29dea0176041c5a0ae640a71dbe24f/:original">
+      <img src="https://res.cloudinary.com/spothopper/image/fetch/f_auto,q_auto:best,c_fit,h_1200/http://static.spotapps.co/spots/47/29dea0176041c5a0ae640a71dbe24f/:original" alt="Restaurant Interior">
     </div>
   </section>
 
   <h1 class="section-title">Our Special Dishes</h1>
   <section class="special">
-    <div class="sepical1">
+    <div class="sepical1" onclick="window.location.href='menu.html'">
       <img src="https://recipe30.com/wp-content/uploads/2023/03/chicken-Biryani.jpg" alt="Biryani">
       <h4>Hyderabadi Biryani</h4>
       <p>Spicy rice with tender chicken pieces served hot.</p>
       <p class="price">₹180</p>
     </div>
 
-    <div class="sepical1">
-      <img src="https://celloindia.co.in/cdn/shop/articles/09e4acfe3778136b196f0202b45f49d5_60e19218-7883-44c2-987f-76a01e6f3606_394x.jpg?v=1739959151" alt="Paneer Butter Masala">
+    <div class="sepical1" onclick="window.location.href='menu.html'">
+      <img src="https://celloindia.co.in/cdn/shop/articles/09e4acfe3778136b196f0202b45f49d5_60e19218-7883-44c2-987f-76a01e6f3606_394x.jpg?v=1739959151" alt="Paneer">
       <h4>Paneer Butter Masala</h4>
       <p>Soft paneer cubes in rich creamy tomato gravy.</p>
       <p class="price">₹150</p>
     </div>
 
-    <div class="sepical1">
+    <div class="sepical1" onclick="window.location.href='menu.html'">
       <img src="https://www.helloweirdough.in/cdn/shop/files/Margheritapizza_1.jpg?v=1729269112" alt="Pizza">
       <h4>Cheese Margherita Pizza</h4>
       <p>Classic Italian pizza with extra cheese topping.</p>
@@ -373,76 +434,51 @@
 
     <div class="container2">
       <div class="review">
-        <img src="rs.jpg" alt="rupesh">
+        <img src="rs.jpg" alt="User 1" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
         <div class="stars">★★★★★</div>
         <p>“Best food experience in town! Biryani was mind-blowing and service was fast.”</p>
         <h4>— Rupesh Kumar</h4>
       </div>
 
       <div class="review">
-        <img src="https://thumbs.dreamstime.com/b/indian-boy-posing-motorbike-pune-maharashtra-indian-boy-posing-motorbike-pune-maharashtra-112802076.jpg" alt="">
+        <img src="https://thumbs.dreamstime.com/b/indian-boy-posing-motorbike-pune-maharashtra-indian-boy-posing-motorbike-pune-maharashtra-112802076.jpg" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
         <div class="stars">★★★★☆</div>
         <p>“Clean restaurant, friendly staff and delicious Paneer Butter Masala. Loved it!”</p>
-        <h4>— Nishant kumar</h4>
+        <h4>— Nishant Kumar</h4>
       </div>
 
       <div class="review">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVhUml1ZDbxhB9LtKn1jr0XSQ6qcwctUuQKg&s" alt="">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVhUml1ZDbxhB9LtKn1jr0XSQ6qcwctUuQKg&s" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
         <div class="stars">★★★★★</div>
         <p>“Pizza quality is excellent. Would recommend everyone to try once.”</p>
-        <h4>— Farhan Ali </h4>
+        <h4>— Farhan Ali</h4>
       </div>
-
-      <div class="review">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCCJncwkzSiRsBX08AKO2thg_7rZx37eCg8w&s">
-        <div class="stars">★★★★★</div>
-        <p>“Biryani was flavorful and hot, staff was kind and quick.”</p>
-        <h4>— Vishnu kumar</h4>
-      </div>
-
-      <div class="review">
-        <img src="https://photosmint.com/wp-content/uploads/beautiful-cute-simple-girl-pic-12-years-indian.jpeg">
+      
+       <div class="review">
+        <img src="https://photosmint.com/wp-content/uploads/beautiful-cute-simple-girl-pic-12-years-indian.jpeg" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
         <div class="stars">★★★★☆</div>
         <p>“Very neat place, food tasted amazing. Would love to come again.”</p>
         <h4>— Anjali Kumari</h4>
-      </div>
-
-      <div class="review">
-        <img src="https://photodpshare.com/wp-content/uploads/2025/09/photo-attitude-boys-dp.webp">
-        <div class="stars">★★★★★</div>
-        <p>“Service was smooth, pizza was cheesy and soft. A great place!”</p>
-        <h4>— Raushan kumar</h4>
-      </div>
-
-      <div class="review">
-        <img src="https://photoswaly.in/wp-content/uploads/best-girls-dpz_76.webp">
-        <div class="stars">★★★★☆</div>
-        <p>“Loved the flavor of the food, atmosphere was warm and inviting.”</p>
-        <h4>— Khushi kumari</h4>
-      </div>
-
-      <div class="review">
-        <img src="https://cdn.pixabay.com/photo/2023/02/17/16/25/man-7796384_640.jpg">
-        <div class="stars">★★★☆☆</div>
-        <p>“Good place to hang out, tasty meals and friendly staff service.”</p>
-        <h4>— Rahul kumar</h4>
       </div>
     </div>
   </section>
 
   <section class="contact">
-    <h1>Visit Us</h1>
-    <div class="div1">
-      <h4>📍 Address</h4>
-      <p>RS Restaurant, Boring Road, Patna, Bihar</p>
-    </div>
-    <div class="div1">
-      <h4>📞 Phone</h4>
-      <p>+91 9693814964</p>
-    </div>
-    <div class="div1">
-      <h4>🕒 Opening Hours</h4>
-      <p>Mon - Sun: 10:00 AM – 10:00 PM</p>
+    <h1>Visit Us Today</h1>
+    <div>
+      <div class="div1">
+        <h4>📍 Address</h4>
+        <p>RS Restaurant, Boring Road,<br> Patna, Bihar</p>
+      </div>
+      <div class="div1">
+        <h4>📞 Phone</h4>
+        <p>+91 9693814964</p>
+        <p>+91 1234567890</p>
+      </div>
+      <div class="div1">
+        <h4>🕒 Opening Hours</h4>
+        <p>Mon - Sun: 10:00 AM – 10:00 PM</p>
+      </div>
     </div>
   </section>
 
@@ -460,11 +496,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-

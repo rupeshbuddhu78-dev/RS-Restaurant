@@ -3,219 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RS Restaurant - Signup</title>
+  <title>RS Restaurant | Sign Up</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: url("https://images.unsplash.com/photo-1551782450-17144efb9c50?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
-      background-size: cover;
+      background: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop") no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
+    /* Navbar styling same as other pages */
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
+      display: flex; justify-content: space-between; align-items: center; padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-      transition: all 0.3s ease;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      transition: 0.3s;
-      padding: 8px 14px;
-      border-radius: 5px;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background: rgba(255,255,255,0.25);
-      color: #ffeb3b;
-    }
-    .menu-toggle {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #fff;
-    }
-    @media (max-width: 768px) {
-      nav ul {
-        position: absolute;
-        top: 65px;
-        left: -100%;
-        width: 100%;
-        flex-direction: column;
-        background: rgba(0,0,0,0.6);
-        backdrop-filter: blur(8px);
-        padding: 20px 0;
-        text-align: center;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-      }
-      nav ul.show {
-        left: 0;
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
+    .logo { font-size: 26px; font-weight: bold; color: rgb(30, 214, 162); text-transform: uppercase; }
+    nav ul { display: flex; list-style: none; gap: 20px; }
+    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; padding: 8px 12px; }
+    nav ul li a:hover { color: rgb(30, 214, 162); }
+
+    /* Signup Form Container */
     .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 90vh;
-      backdrop-filter: blur(4px);
+      flex: 1; display: flex; justify-content: center; align-items: center;
     }
-    .box {
-      background: rgba(0, 0, 0, 0.55);
-      width: 320px;
-      box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-      border-radius: 8px;
-      padding: 30px;
-      color: #fff;
-    }
-    .box h3 {
-      text-align: center;
-      font-weight: bold;
-      font-size: 25px;
-      margin-bottom: 15px;
-      color: #ffeb3b;
-      text-shadow: 1px 1px 2px #000;
-    }
-    .box label {
-      display: block;
-      margin-top: 10px;
-      color: #fff;
-    }
-    .box input {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      margin-top: 5px;
-    }
-    .box button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 10px;
-      background: #ff9800;
+
+    .form-box {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 10px;
+      width: 400px;
       color: white;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    .box button:hover {
-      background: #ffb300;
+
+    .form-box h2 { text-align: center; color: rgb(30, 214, 162); margin-bottom: 20px; }
+
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #ddd; }
+    .input-group input {
+      width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #555;
+      background: rgba(255,255,255,0.1); color: white; outline: none;
     }
-    .links {
-      text-align: center;
-      margin-top: 10px;
+    .input-group input:focus { border-color: rgb(30, 214, 162); }
+
+    .btn-submit {
+      width: 100%; padding: 12px; background: rgb(30, 214, 162); border: none;
+      color: white; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; margin-top: 10px;
     }
-    .links a {
-      color: #ffeb3b;
-      text-decoration: underline;
-      font-size: 14px;
-    }
-    .links a:hover {
-      color: #fff;
-    }
+    .btn-submit:hover { background: #179fde; }
+
+    .link-text { text-align: center; margin-top: 15px; font-size: 14px; }
+    .link-text a { color: rgb(30, 214, 162); text-decoration: none; }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">RS Restaurant</div>
-      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-      <ul id="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="category.html">Category</a></li>
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="loginpage.html" class="active">SignUp</a></li>
-        <li><a href="c.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+
+  <nav>
+    <div class="logo">RS Restaurant</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
   <div class="container">
-    <div class="box">
-      <h3>Create Account</h3>
-      
-      <form id="signupForm">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="Enter your username" required>
-        
-        <label for="Email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-        
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Enter password" required>
-        
-        <label for="confirm-password">Confirm Password</label>
-        <input type="password" id="confirm" placeholder="Confirm password" required>
-        
-        <button type="submit">Sign Up</button>
-        <div class="links">
-          <a href="#">Forgot Password?</a><br>
-          <a href="login.html">Already have an account? Login</a>
+    <div class="form-box">
+      <h2>Create Account</h2>
+      <form onsubmit="registerUser(event)">
+        <div class="input-group">
+          <label>Full Name</label>
+          <input type="text" id="reg-name" placeholder="Enter your name" required>
         </div>
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="reg-email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+          <label>Phone Number</label>
+          <input type="number" id="reg-phone" placeholder="Enter phone number" required>
+        </div>
+        <div class="input-group">
+          <label>Create Password</label>
+          <input type="password" id="reg-password" placeholder="Create a password" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Sign Up</button>
+        
+        <p class="link-text">Already have an account? <a href="login.html">Login here</a></p>
       </form>
-      </div>
+    </div>
   </div>
+
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById('nav-links');
-      navLinks.classList.toggle('show');
+    function registerUser(e) {
+      e.preventDefault(); // Page refresh hone se roko
+
+      // 1. Data input se nikalo
+      const name = document.getElementById('reg-name').value;
+      const email = document.getElementById('reg-email').value;
+      const phone = document.getElementById('reg-phone').value;
+      const password = document.getElementById('reg-password').value;
+
+      // 2. Object banao
+      const userObj = {
+        name: name,
+        email: email,
+        phone: phone,
+        password: password
+      };
+
+      // 3. LocalStorage me save karo (Key: 'rsUser')
+      localStorage.setItem('rsUser', JSON.stringify(userObj));
+
+      // 4. Success Message aur Redirect
+      alert("Account Created Successfully! Redirecting to Login...");
+      window.location.href = "login.html";
     }
-    
-    // Yeh script ab upar di gayi IDs ke saath kaam karegi
-    document.getElementById("signupForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const username = document.getElementById("username").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const confirm = document.getElementById("confirm").value.trim();
-
-      if (password !== confirm) {
-        alert("Passwords do not match!");
-        return;
-      }
-
-      let users = JSON.parse(localStorage.getItem("users")) || [];
-      if (users.find(u => u.email === email)) {
-        alert("User already exists!");
-        return;
-      }
-
-      users.push({ username, email, password });
-      localStorage.setItem("users", JSON.stringify(users));
-      alert("Signup successful! Please login now.");
-      window.location.href = "login.html"; // Aapne signup.html likha tha, maine loginpage.html kar diya hai
-    });
   </script>
+
 </body>
 </html>
-
-
-

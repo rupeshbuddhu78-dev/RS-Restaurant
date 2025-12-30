@@ -1,241 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RS Restaurant - Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RS Restaurant | Login</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    /* Same Design as Signup */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: url("https://images.unsplash.com/photo-1551782450-17144efb9c50?auto=format&fit=crop&w=1920&q=80") no-repeat center center fixed;
-      background-size: cover;
-    }
-    nav {
+      background: url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop") no-repeat center center/cover;
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    .logo {
-      font-size: 26px;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 25px;
-    }
-    nav ul li a {
-      text-decoration: none;
-      color: #fff;
-      font-weight: 500;
-      padding: 8px 14px;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    nav ul li a:hover,
-    nav ul li a.active {
-      background: rgba(255,255,255,0.25);
-      color: #ffeb3b;
-    }
-
-    /* --- HAMBURGER ICON (Naya CSS) --- */
-    .hamburger {
-      display: none; /* Desktop par hide */
-      cursor: pointer;
       flex-direction: column;
-      gap: 5px; /* Bars ke beech space */
     }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: #fff;
-      border-radius: 2px;
-    }
-    /* --- End Hamburger CSS --- */
 
+    nav {
+      display: flex; justify-content: space-between; align-items: center; padding: 15px 30px;
+      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 1000;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .logo { font-size: 26px; font-weight: bold; color: rgb(30, 214, 162); text-transform: uppercase; }
+    nav ul { display: flex; list-style: none; gap: 20px; }
+    nav ul li a { text-decoration: none; color: #fff; font-weight: 500; transition: 0.3s; padding: 8px 12px; }
+    nav ul li a:hover { color: rgb(30, 214, 162); }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 90vh;
-      backdrop-filter: blur(4px);
-    }
-    .box {
-      background: rgba(0, 0, 0, 0.55);
-      width: 320px;
-      box-shadow: 0px 0px 20px rgba(0,0,0,0.3);
-      border-radius: 8px;
-      padding: 30px;
-      color: #fff;
-    }
-    .box h3 {
-      text-align: center;
-      font-weight: bold;
-      font-size: 25px;
-      margin-bottom: 15px;
-      color: #ffeb3b;
-      text-shadow: 1px 1px 2px #000;
-    }
-    .box label {
-      display: block;
-      margin-top: 10px;
-      color: #fff;
-    }
-    .box input {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      margin-top: 5px;
-    }
-    .box button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 10px;
-      background: #ff9800;
+    .container { flex: 1; display: flex; justify-content: center; align-items: center; }
+
+    .form-box {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 40px;
+      border-radius: 10px;
+      width: 350px;
       color: white;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .box button:hover {
-      background: #ffb300;
-    }
-    .links {
-      text-align: center;
-      margin-top: 10px;
-    }
-    .links a {
-      color: #ffeb3b;
-      text-decoration: underline;
-      font-size: 14px;
-    }
-    .links a:hover {
-      color: #fff;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* --- MEDIA QUERY FOR RESPONSIVENESS (Naya CSS) --- */
-    @media (max-width: 768px) {
-      .hamburger {
-        display: flex; /* Mobile par show */
-      }
-      
-      nav ul {
-        display: none; /* Menu ko hide karo */
-        flex-direction: column; /* Links ko vertical karo */
-        position: absolute;
-        top: 100%; /* Navbar ke theek neeche */
-        left: 0;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        border-top: 1px solid rgba(255,255,255,0.2);
-        padding: 20px 0;
-        align-items: center; /* Links ko center karo */
-        gap: 15px;
-      }
-
-      /* Jab .active class add ho, tab menu dikhao */
-      nav ul.active {
-        display: flex;
-      }
-
-      nav {
-        padding: 15px 20px; /* Mobile par padding adjust */
-      }
+    .form-box h2 { text-align: center; color: rgb(30, 214, 162); margin-bottom: 20px; }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #ddd; }
+    .input-group input {
+      width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #555;
+      background: rgba(255,255,255,0.1); color: white; outline: none;
     }
-    /* --- End Media Query --- */
-
+    
+    .btn-submit {
+      width: 100%; padding: 12px; background: rgb(30, 214, 162); border: none;
+      color: white; font-size: 16px; font-weight: bold; border-radius: 25px; cursor: pointer; margin-top: 10px;
+    }
+    .btn-submit:hover { background: #179fde; }
+    
+    .link-text { text-align: center; margin-top: 15px; font-size: 14px; }
+    .link-text a { color: rgb(30, 214, 162); text-decoration: none; }
   </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <div class="logo">RS Restaurant</div>
-      <div class="hamburger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="About.html">About</a></li>
-        <li><a href="category.html">Category</a></li>
-        <li><a href="menu.html">Menu</a></li>
-        <li><a href="signup.html">SignUp</a></li> <li><a href="loginpage.html" class="active">Login</a></li>
-      </ul>
-    </nav>
-  </header>
+
+  <nav>
+    <div class="logo">RS Restaurant</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="signup.html">Sign Up</a></li>
+    </ul>
+  </nav>
 
   <div class="container">
-    <div class="box">
-      <h3>Welcome Back</h3>
-      <form id="loginForm">
-        <label>Email</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <br>
+    <div class="form-box">
+      <h2>Welcome Back</h2>
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" id="login-email" placeholder="Enter your email">
+      </div>
+      <div class="input-group">
         <label>Password</label>
-        <input type="password" id="password" placeholder="Enter password" required>
-        <br>
-        <button type="submit">Login</button>
-        <div class="links">
-          <a href="#">Forgot Password?</a><br><br>
-          <a href="signup.html">Don’t have an account? SignUp</a> </div>
-      </form>
+        <input type="password" id="login-password" placeholder="Enter password">
+      </div>
+
+      <button onclick="loginUser()" class="btn-submit">Login</button>
+      
+      <p class="link-text">Don't have an account? <a href="signup.html">Sign Up here</a></p>
     </div>
   </div>
 
   <script>
-    // --- Naya JavaScript ---
-    const hamburger = document.querySelector(".hamburger");
-    const navMenu = document.querySelector("nav ul");
+    function loginUser() {
+      // 1. User ne jo input dala wo lo
+      const emailInput = document.getElementById('login-email').value;
+      const passInput = document.getElementById('login-password').value;
 
-    hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("active");
-    });
-    // --- End Naya JavaScript ---
+      // 2. LocalStorage se data nikalo (Note: Key 'rsUser' hi honi chahiye)
+      const storedData = localStorage.getItem('rsUser');
 
-
-    // Aapka pehle ka script (Login Form ke liye)
-    document.getElementById("loginForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const users = JSON.parse(localStorage.getItem("users")) || [];
-
-      const user = users.find(u => u.email === email && u.password === password);
-
-      if (!user) {
-        alert("Invalid email or password!");
+      // 3. Check: Agar data nahi hai (Matlab signup hi nahi kiya)
+      if (!storedData) {
+        alert("Account nahi mila! Pehle Signup karein.");
         return;
       }
 
-      localStorage.setItem("loggedInUser", JSON.stringify(user));
-      
-  
-      alert("Login successful!");
-      
-    
-    });
+      // 4. Data ko Object me badlo
+      const user = JSON.parse(storedData);
+
+      // 5. Match karo
+      if (emailInput === user.email && passInput === user.password) {
+        alert("Login Successful! Welcome " + user.name);
+        // My Account page par bhej do
+        window.location.href = "myaccount.html";
+      } else {
+        alert("Ghalat Email ya Password!");
+      }
+    }
   </script>
-  </body>
+
+</body>
 </html>
