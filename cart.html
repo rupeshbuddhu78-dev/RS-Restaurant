@@ -6,46 +6,409 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RS Restaurant | Your Cart</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-    body { background-color: #fffaf3; }
+    /* --- COMMON STYLES --- */
+    :root {
+      --primary-color: rgb(30, 214, 162);
+      --secondary-color: #179fde;
+      --dark-text: #333;
+      --light-text: #777;
+      --bg-light: #f8f9fa;
+      --danger-color: #ff4d4d;
+    }
 
-    /* Navbar */
-    nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; background: #ffffff; box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); position: sticky; top: 0; z-index: 1000; }
-    .logo { font-size: 26px; font-weight: bold; color: rgb(30, 214, 162); text-transform: uppercase; }
-    nav ul { display: flex; list-style: none; gap: 20px; }
-    nav ul li a { text-decoration: none; color: #333; font-weight: 500; padding: 8px 12px; border-radius: 5px; transition: 0.3s; }
-    nav ul li a:hover, nav ul li a.active { background: #179fde; color: #fff; }
-    .menu-toggle { display: none; font-size: 28px; cursor: pointer; color: #179fde; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    /* Cart Container */
-    .cart-container { max-width: 1000px; margin: 50px auto; padding: 20px; background: #fff; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); min-height: 400px; }
-    h2.title { text-align: center; color: #d35400; margin-bottom: 30px; font-size: 32px; }
+    body {
+      background-color: var(--bg-light);
+      color: var(--dark-text);
+    }
 
-    .empty-cart { text-align: center; display: none; padding: 50px 20px; }
-    .back-btn { display: inline-block; background: rgb(30, 214, 162); color: white; padding: 10px 25px; text-decoration: none; border-radius: 25px; margin-top: 20px; }
+    /* --- NAVBAR (Same as before) --- */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background: #ffffff;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-    /* Table */
-    .cart-table { width: 100%; border-collapse: collapse; }
-    .cart-table th { text-align: left; padding: 15px; color: #fff; background: rgb(30, 214, 162); }
-    .cart-table td { padding: 15px; border-bottom: 1px solid #eee; vertical-align: middle; }
-    .cart-info { display: flex; align-items: center; gap: 15px; }
-    .cart-info img { width: 80px; height: 80px; border-radius: 10px; object-fit: cover; }
-    .remove-link { color: #e74c3c; font-size: 12px; cursor: pointer; font-weight: 600; }
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
 
-    /* Quantity Buttons */
-    .qty-box { display: flex; align-items: center; gap: 10px; }
-    .qty-btn { background: #f0f0f0; border: 1px solid #ccc; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
 
-    /* Total Section */
-    .total-price { display: flex; justify-content: flex-end; margin-top: 20px; }
-    .total-table { border-top: 3px solid rgb(30, 214, 162); width: 100%; max-width: 350px; }
-    .total-table td { padding: 10px; font-size: 16px; }
-    .checkout-btn { display: block; width: 100%; background: #ff6347; color: white; padding: 12px; border-radius: 25px; margin-top: 15px; border: none; cursor: pointer; font-weight: 600; }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--dark-text);
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
 
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: var(--secondary-color);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(23, 159, 222, 0.3);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--secondary-color);
+    }
+
+    /* --- CART CONTAINER --- */
+    .cart-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 35px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      min-height: 400px;
+    }
+
+    h2.title {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 35px;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    /* Empty Cart Styling */
+    .empty-cart {
+      text-align: center;
+      display: none;
+      padding: 50px 20px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 35px;
+      text-decoration: none;
+      border-radius: 30px;
+      margin-top: 25px;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(30, 214, 162, 0.4);
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(30, 214, 162, 0.6);
+    }
+
+    /* --- DESKTOP TABLE STYLING (Colorful Headers) --- */
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 25px;
+    }
+
+    .cart-table th {
+      text-align: left;
+      padding: 18px;
+      color: var(--secondary-color);
+      font-weight: 700;
+      border-bottom: 2px solid #eee;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .cart-table td {
+      padding: 25px 15px;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+    }
+
+    .cart-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cart-info img {
+      width: 85px;
+      height: 85px;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-details h4 {
+      font-size: 17px;
+      margin-bottom: 5px;
+      color: var(--dark-text);
+      font-weight: 600;
+    }
+
+    .cart-details small {
+      color: var(--light-text);
+      font-weight: 500;
+    }
+
+    .remove-link {
+      color: var(--danger-color);
+      font-size: 13px;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 10px;
+      background: #fff0f0;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .remove-link:hover {
+      background: var(--danger-color);
+      color: white;
+    }
+
+    /* STYLISH Quantity Buttons */
+    .qty-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f0fcf8;
+      padding: 6px 12px;
+      border-radius: 30px;
+      width: fit-content;
+      border: 1px solid #dff3ed;
+    }
+
+    .qty-btn {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-btn:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .qty-box span {
+      font-weight: 600;
+      font-size: 16px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    .price-text {
+      font-weight: 700;
+      color: var(--secondary-color);
+      font-size: 18px;
+    }
+
+    /* --- TOTAL SECTION (Premium Look) --- */
+    .total-price {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 30px;
+    }
+
+    .total-table {
+      width: 100%;
+      max-width: 380px;
+      background: linear-gradient(135deg, #f9fcfb, #eef8ff);
+      /* Subtle Gradient */
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid #eef;
+    }
+
+    .total-table table {
+      width: 100%;
+    }
+
+    .total-table td {
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--light-text);
+      border-bottom: 1px dashed #ddd;
+    }
+
+    .total-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .total-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+
+    /* Grand Total & Checkout Button */
+    .grand-total-label {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      color: var(--dark-text) !important;
+      padding-top: 15px !important;
+    }
+
+    .grand-total-value {
+      font-size: 22px !important;
+      font-weight: 800 !important;
+      color: var(--primary-color) !important;
+      padding-top: 15px !important;
+    }
+
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      /* Gradient Button */
+      color: white;
+      padding: 16px;
+      border-radius: 15px;
+      margin-top: 25px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 20px rgba(23, 159, 222, 0.3);
+      /* Colored Shadow */
+      transition: 0.3s;
+    }
+
+    .checkout-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px rgba(23, 159, 222, 0.5);
+    }
+
+    /* --- MOBILE DESIGN (Colorful Cards) --- */
     @media (max-width: 768px) {
-      .menu-toggle { display: block; }
-      nav ul { position: fixed; top: 60px; left: -100%; width: 100%; height: 100vh; background: white; flex-direction: column; text-align: center; transition: 0.3s; }
-      nav ul.show { left: 0; }
+      .menu-toggle {
+        display: block;
+      }
+
+      nav ul {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        text-align: center;
+        transition: 0.3s;
+        padding-top: 50px;
+        z-index: 999;
+      }
+
+      nav ul.show {
+        left: 0;
+      }
+
+      .cart-container {
+        margin: 20px 15px;
+        padding: 20px;
+        border-radius: 15px;
+      }
+
+      .cart-table,
+      .cart-table thead,
+      .cart-table tbody,
+      .cart-table th,
+      .cart-table td,
+      .cart-table tr {
+        display: block;
+      }
+
+      .cart-table thead {
+        display: none;
+      }
+
+      /* Mobile Card Style */
+      .cart-table tr {
+        background: #fff;
+        border-radius: 18px;
+        margin-bottom: 20px;
+        padding: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        border-left: 5px solid var(--primary-color);
+        /* Green Accent Border */
+      }
+
+      .cart-table td:first-child {
+        width: 100%;
+        padding: 0 0 15px 0;
+        border-bottom: 1px dashed #eee;
+      }
+
+      .cart-info img {
+        width: 75px;
+        height: 75px;
+      }
+
+      .cart-details h4 {
+        font-size: 16px;
+      }
+
+      /* Qty & Price Row on Mobile */
+      .cart-table td:nth-child(2),
+      .cart-table td:nth-child(3) {
+        border: none;
+        padding: 15px 0 0 0;
+        width: 50%;
+        display: flex;
+        align-items: center;
+      }
+
+      .cart-table td:nth-child(3) {
+        justify-content: flex-end;
+      }
+
+      .total-price {
+        justify-content: center;
+      }
+
+      .total-table {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
@@ -66,33 +429,54 @@
 
   <div class="cart-container">
     <h2 class="title">Your Food Cart</h2>
+
     <div id="empty-cart-msg" class="empty-cart">
-      <h3>Your Cart is Empty! 🍽</h3>
-      <a href="menu.html" class="back-btn">Go to Menu</a>
+      <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="Empty" width="120"
+        style="opacity: 0.6; margin-bottom: 25px;">
+      <h3>Your Cart is Empty!</h3>
+      <p style="color: #999; margin-bottom: 10px;">Looks like you haven't added anything yet.</p>
+      <a href="menu.html" class="back-btn">Browse Menu Now</a>
     </div>
 
     <div id="cart-content">
+
       <table class="cart-table">
         <thead>
-          <tr><th>Product</th><th>Quantity</th><th>Subtotal</th></tr>
+          <tr>
+            <th style="width: 50%;">Product Details</th>
+            <th style="width: 25%;">Quantity</th>
+            <th style="width: 25%; text-align: right;">Subtotal</th>
+          </tr>
         </thead>
-        <tbody id="cart-body"></tbody>
+        <tbody id="cart-body">
+        </tbody>
       </table>
 
       <div class="total-price">
         <div class="total-table">
           <table>
-            <tr><td>Subtotal</td><td id="subtotal-price">₹0</td></tr>
-            <tr><td>Tax (5%)</td><td id="tax-price">₹0</td></tr>
-            <tr><td style="font-weight:bold; color:#d35400;">Grand Total</td><td style="font-weight:bold; color:#d35400;" id="grand-total">₹0</td></tr>
+            <tr>
+              <td>Subtotal</td>
+              <td id="subtotal-price">₹0</td>
+            </tr>
+            <tr>
+              <td>Tax (5%)</td>
+              <td id="tax-price">₹0</td>
+            </tr>
+            <tr>
+              <td class="grand-total-label">Total Amount</td>
+              <td class="grand-total-value" id="grand-total">₹0</td>
+            </tr>
           </table>
-          <button class="checkout-btn" onclick="processCheckout()">Proceed to Checkout</button>
+          <button class="checkout-btn" onclick="processCheckout()">Proceed to Checkout 🚀</button>
         </div>
       </div>
+
     </div>
   </div>
 
   <script>
+    // --- JS Logic is same as before ---
     let cartItems = JSON.parse(localStorage.getItem('rsCart')) || [];
     const cartBody = document.getElementById('cart-body');
     const emptyMsg = document.getElementById('empty-cart-msg');
@@ -107,20 +491,21 @@
       cartContent.style.display = 'block';
       emptyMsg.style.display = 'none';
       cartBody.innerHTML = "";
-      
+
       let subtotal = 0;
       cartItems.forEach((item, index) => {
         let total = item.price * item.qty;
         subtotal += total;
+
         cartBody.innerHTML += `
           <tr>
             <td>
               <div class="cart-info">
                 <img src="${item.image}" alt="${item.name}">
-                <div>
+                <div class="cart-details">
                   <h4>${item.name}</h4>
-                  <small>Price: ₹${item.price}</small><br>
-                  <span class="remove-link" onclick="removeItem(${index})">Remove</span>
+                  <small>Price: ₹${item.price}</small>
+                  <span class="remove-link" onclick="removeItem(${index})">🗑️ Remove</span>
                 </div>
               </div>
             </td>
@@ -131,7 +516,7 @@
                 <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
               </div>
             </td>
-            <td>₹${total}</td>
+            <td class="price-text" style="text-align: right;">₹${total}</td>
           </tr>`;
       });
 
@@ -157,37 +542,33 @@
     }
 
     function processCheckout() {
-      // 1. Login Check
       const user = JSON.parse(localStorage.getItem("rsUser"));
       if (!user) {
-        alert("Please Login first to place order!");
-        window.location.href = "login.html";
+        alert("⚠️ Please Login first to place an order!");
+        window.location.href = "loginpage.html";
         return;
       }
 
-      // 2. Calculate Total Again
       let subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
       let tax = Math.round(subtotal * 0.05);
       let grandTotal = subtotal + tax;
 
-      // 3. Create Order Object
       const newOrder = {
         id: Date.now(),
         date: new Date().toLocaleString(),
         userEmail: user.email,
-        items: cartItems, // IMPORTANT: Passing items array
+        items: cartItems,
         total: grandTotal,
         status: "Pending"
       };
 
-      // 4. Save to History
       let history = JSON.parse(localStorage.getItem("rsOrderHistory")) || [];
       history.push(newOrder);
       localStorage.setItem("rsOrderHistory", JSON.stringify(history));
 
-      // 5. Clear Cart & Redirect
-      if(confirm("Place order for ₹" + grandTotal + "?")) {
+      if (confirm("Place order for ₹" + grandTotal + "?")) {
         localStorage.removeItem('rsCart');
+        alert("✅ Order Placed Successfully!");
         window.location.href = "myorders.html";
       }
     }
@@ -195,4 +576,5 @@
     renderCart();
   </script>
 </body>
+
 </html>
